@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">KopiAddict</string>
+    <string name="action_settings">Settings</string>
+    <string name="flavor_coffee">Coffee</string>
+    <string name="flavor_tea">Tea</string>
+    <string name="flavor_both">Coffee + Tea</string>
+    <string name="flavor_coffee_local">Kopi</string>
+    <string name="flavor_tea_local">Teh</string>
+    <string name="flavor_both_local">Yuan Yang</string>
+    <string name="sweetener_condensed_milk">Condensed Milk</string>
+    <string name="sweetener_evaporated_milk">Evaporated Milk</string>
+    <string name="sweetener_palm_sugar">Palm Sugar</string>
+    <string name="sweetener_evaporated_milk_local">C</string>
+    <string name="sweetener_palm_sugar_local">Gula Melaka</string>
+    <string name="sweetener_level_0p">Kosong</string>
+    <string name="sweetener_level_25p">Siew Siew Dai</string>
+    <string name="sweetener_level_50p">Siew Dai</string>
+    <string name="sweetener_level_100p">Normal Sweet</string>
+    <string name="sweetener_level_150p">Ga Dai</string>
+    <string name="concentration_level_weaker">Weaker</string>
+    <string name="concentration_level_normal">Normal</string>
+    <string name="concentration_level_stronger">Stronger</string>
+    <string name="concentration_level_weaker_local">PO</string>
+    <string name="concentration_level_stronger.local">Gao</string>
+
+</resources>
