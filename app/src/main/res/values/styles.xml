@@ -24,7 +24,7 @@
     <style name="Common.Header"/>
     <style name="Common.Header.Toolbar">
         <item name="android:textColor">@color/icons</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">40sp</item>
         <item name="android:textStyle">bold</item>
     </style>
     <style name="Common.Header.InfoText">

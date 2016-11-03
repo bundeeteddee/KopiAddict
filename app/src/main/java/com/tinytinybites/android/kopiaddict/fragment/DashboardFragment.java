@@ -1,6 +1,7 @@
 package com.tinytinybites.android.kopiaddict.fragment;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,12 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.parceler.Parcels;
 import com.cleveroad.fanlayoutmanager.FanLayoutManager;
 import com.cleveroad.fanlayoutmanager.FanLayoutManagerSettings;
 import com.tinytinybites.android.kopiaddict.R;
 import com.tinytinybites.android.kopiaddict.adapter.DrinkRecyclerViewAdapter;
+import com.tinytinybites.android.kopiaddict.application.EApplication;
 import com.tinytinybites.android.kopiaddict.common.BundleUtil;
 import com.tinytinybites.android.kopiaddict.dao.DrinkDao;
 import com.tinytinybites.android.kopiaddict.databinding.FragmentDashboardBinding;
@@ -32,6 +35,7 @@ public class DashboardFragment extends Fragment {
     private FragmentDashboardBinding mBinding;
     private DashboardViewModel mDashboardViewModel;
     private RecyclerView mRecyclerView;
+    private TextView mHeaderTextView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +63,12 @@ public class DashboardFragment extends Fragment {
         mDashboardViewModel = new DashboardViewModel();
         mBinding.setDashboardViewModel(mDashboardViewModel);
 
+        //Apply quick dirty way for custom font for header
+        //Ref: https://futurestud.io/tutorials/custom-fonts-on-android-quick-and-dirty
+        mHeaderTextView = (TextView) mBinding.getRoot().findViewById(R.id.header);
+        Typeface typeface = Typeface.createFromAsset(EApplication.getInstance().getAssets(),"angelina.TTF");
+        mHeaderTextView.setTypeface(typeface);
+
         //Customize fan layout and setup recycler view
         mRecyclerView = (RecyclerView) mBinding.getRoot().findViewById(R.id.recycler_view);
         FanLayoutManagerSettings fanLayoutManagerSettings = FanLayoutManagerSettings
@@ -70,8 +80,6 @@ public class DashboardFragment extends Fragment {
                                                             .build();
         FanLayoutManager fanLayoutManager = new FanLayoutManager(getContext(), fanLayoutManagerSettings);
         mRecyclerView.setLayoutManager(fanLayoutManager);
-
-        //mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(new DrinkRecyclerViewAdapter(getActivity(), DrinkDao.getInstance().loadAllAsync()));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));

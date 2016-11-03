@@ -55,7 +55,7 @@
                     android:layout_marginTop="@dimen/dashboard_logo_margin"
                     android:layout_marginBottom="@dimen/dashboard_logo_margin"
                     android:layout_centerHorizontal="true"
-                    android:text="Yum Cha"
+                    android:text="Kopi Addict"
                     />
 
                 <!-- Starting Block -->

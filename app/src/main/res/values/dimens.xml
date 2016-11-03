@@ -6,7 +6,7 @@
 
     <!-- Dashboard -->
     <dimen name="toolbar_extra_view">80dp</dimen>
-    <dimen name="dashboard_logo_margin">10dp</dimen>
+    <dimen name="dashboard_logo_margin">8dp</dimen>
     <dimen name="dashboard_start_block_margin_side">60dp</dimen>
     <dimen name="dashboard_start_block_padding">15dp</dimen>
     <dimen name="dashboard_cup_size">150dp</dimen>
