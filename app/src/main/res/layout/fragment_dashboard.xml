@@ -33,11 +33,22 @@
             tools:listitem="@layout/recyclerview_item_drink"
             />
 
+        <TextView
+            style="@style/Common.Header.InfoText"
+            android:id="@+id/traditional_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
+            android:layout_above="@+id/recycler_view"
+            android:layout_marginBottom="@dimen/dashboard_info_margin_bottom"
+            android:text="Or check out some traditional drinks below!"/>
+
         <!-- Ensure scrollable -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/recycler_view"
+            android:layout_above="@+id/traditional_info"
             android:layout_alignParentTop="true"
             android:fillViewport="true">
 

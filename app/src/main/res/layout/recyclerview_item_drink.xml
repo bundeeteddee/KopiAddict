@@ -60,7 +60,7 @@
                     android:layout_height="0dp"
                     android:layout_margin="@dimen/drink_composition_margin"
                     android:background="@color/drinks_com_water"
-                    android:layout_weight="1"
+                    app:layoutWeight="@{drink.waterCompositionWeight}"
                     />
 
                 <View

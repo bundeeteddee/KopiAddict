@@ -268,4 +268,30 @@ public class Drink extends RealmObject{
         return weight;
     }
 
+
+    public int getWaterCompositionWeight(){
+        //The rule is: Is user ask for stronger drink OR drink already contains both evaporated and condensed milk, there will be no water
+        if(getConcentrationLevel().isStronger()){
+            return 0;
+        }
+
+        if(!getSweeteners().isEmpty()){
+            boolean hasEvap = false;
+            boolean hasCondensedMilk = false;
+            for(Sweetener sweetener: getSweeteners()){
+                if(sweetener.isEvaporatedMilk()){
+                    hasEvap = true;
+                }else if(sweetener.isCondensedMilk()){
+                    hasCondensedMilk = true;
+                }
+            }
+
+            if(hasCondensedMilk && hasEvap){
+                return 0;
+            }
+        }
+
+        return 1;
+    }
+
 }

@@ -100,4 +100,8 @@ public class ConcentrationLevel extends RealmObject {
         }
         return getSelectionName();
     }
+
+    public boolean isWeaker(){  return getId() == TYPE_WEAKER;}
+    public boolean isNormal(){  return getId() == TYPE_NORMAL;}
+    public boolean isStronger(){  return getId() == TYPE_STRONGER;}
 }
