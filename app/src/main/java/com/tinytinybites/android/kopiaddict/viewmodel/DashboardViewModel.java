@@ -25,9 +25,16 @@ public class DashboardViewModel extends BaseObservable implements ViewModel {
 
     }
 
+    /**
+     * Get the background color of the card for the drink, based on position
+     * @param drink
+     * @return
+     */
     public int getBackgroundColor(Drink drink){
         return ResourceUtil.GetColor(drink.getColorResId());
     }
+
+
 
     /**
      * Constructor

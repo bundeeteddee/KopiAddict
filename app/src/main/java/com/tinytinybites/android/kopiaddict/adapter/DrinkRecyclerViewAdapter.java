@@ -47,6 +47,7 @@ public class DrinkRecyclerViewAdapter extends RealmRecyclerViewAdapter<Drink, Dr
 
         //Set card bg color here
         drink.setColorResId(ResourceUtil.GetColor(getCardBackgroundColorBasedOnPosition(position)));
+
         holder.getBinding().setVariable(com.tinytinybites.android.kopiaddict.BR.drink, drink);
         holder.getBinding().executePendingBindings();
     }

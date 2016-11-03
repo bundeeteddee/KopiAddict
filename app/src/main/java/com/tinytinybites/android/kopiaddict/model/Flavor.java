@@ -97,4 +97,8 @@ public class Flavor extends RealmObject{
         return null;
     }
 
+    public boolean isYuanYang(){    return getId() == TYPE_YUAN_YANG;}
+    public boolean isKopi(){    return getId() == TYPE_KOPI;}
+    public boolean isTeh(){    return getId() == TYPE_TEH;}
+
 }

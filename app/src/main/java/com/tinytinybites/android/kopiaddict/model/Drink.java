@@ -1,8 +1,13 @@
 package com.tinytinybites.android.kopiaddict.model;
 
+import android.databinding.BindingAdapter;
 import android.support.annotation.ColorRes;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import java.util.UUID;
+import com.tinytinybites.android.kopiaddict.R;
+import com.tinytinybites.android.kopiaddict.application.EApplication;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.Ignore;
@@ -105,12 +110,162 @@ public class Drink extends RealmObject{
         this.colorResId = colorResId;
     }
 
+    /**
+     * Data Bind method
+     * @return
+     */
     public String getFriendlyDrinkName(){
-        //TODO:
         StringBuilder builder = new StringBuilder();
-        builder.append(flavor.getSelectionName());
-        builder.append("");
-        builder.append(getConcentrationLevel().getSelectionName());
+        builder.append(getFlavor().getSelectionName());
+
+        //Check on sweetener combos
+        if(getSweeteners().isEmpty()){
+            //"O"
+            builder.append(" ");
+            builder.append(EApplication.getInstance().getString(R.string.drink_combo_o));
+        }else{
+            boolean hasEvapMilk = false;
+            boolean hasCondensedMilk = false;
+            boolean hasPalmSugar = false;
+            boolean completed = false;
+            for(Sweetener sweetener: getSweeteners()){
+                if(sweetener.isEvaporatedMilk()){
+                    hasEvapMilk = true;
+                }else if(sweetener.isCondensedMilk()){
+                    hasCondensedMilk = true;
+                }else if(sweetener.isPalmSugar()){
+                    hasPalmSugar = true;
+                }
+            }
+
+            if(hasEvapMilk){
+                if(hasPalmSugar){
+                    builder.append(" ");
+                    builder.append(EApplication.getInstance().getString(R.string.sweetener_palm_sugar_local));
+                    completed = true;
+                }else if(hasCondensedMilk){
+                    if(!getFlavor().isYuanYang()){
+                        builder.append(" + ");
+                        builder.append(EApplication.getInstance().getString(R.string.drink_combo_c));
+                        completed = true;
+                    }
+                }
+            }
+
+            if(!completed){
+                if(!hasCondensedMilk){
+                    builder.append(" ");
+                    builder.append(EApplication.getInstance().getString(R.string.drink_combo_c));
+                }
+            }
+        }
+
+        //Check sweetness level
+        if(getSweetenerLevel().getSweetenessFriendlyString() != null){
+            builder.append(" ");
+            builder.append(getSweetenerLevel().getSweetenessFriendlyString());
+        }
+
+        //Check concentration level
+        if(getConcentrationLevel().getConcentrationFriendlyString() != null){
+            builder.append(" ");
+            builder.append(getConcentrationLevel().getConcentrationFriendlyString());
+        }
+
+        //Check for ice
+        if(isIced()){
+            builder.append(" ");
+            builder.append(EApplication.getInstance().getString(R.string.drink_combo_iced));
+        }
+
         return builder.toString();
     }
+
+    /**
+     *
+     * @return
+     */
+    @BindingAdapter("layoutWeight")
+    public static void weight(final View view, int weight) {
+        LinearLayout.LayoutParams lp = ((LinearLayout.LayoutParams)view.getLayoutParams());
+        lp.weight = weight;
+        view.setLayoutParams(lp);
+
+        if(weight > 0){
+            view.setVisibility(View.VISIBLE);
+        }else{
+            view.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * Calculate evaporated milk weight
+     * @return
+     */
+    public int getEvaporatedMilkWeight(){
+        return getSweetenerCompositionWeight(Sweetener.TYPE_EVAPORATED_MILK);
+    }
+
+    /**
+     * Calculate condensed milk weight
+     * @return
+     */
+    public int getCondensedMilkWeight(){
+        return getSweetenerCompositionWeight(Sweetener.TYPE_CONDENSED_MILK);
+    }
+
+    /**
+     * Calculate palm sugar weight
+     * @return
+     */
+    public int getPalmSugarWeight(){
+        return getSweetenerCompositionWeight(Sweetener.TYPE_PALM_SUGAR);
+    }
+
+    /**
+     * Calculate tea weight
+     * @return
+     */
+    public int getTeaWeight(){
+        if(getFlavor().getId() == Flavor.TYPE_YUAN_YANG || getFlavor().getId() == Flavor.TYPE_TEH) {
+            return 2;
+        }
+        return 0;
+    }
+
+    /**
+     * Calculate coffee weight
+     * @return
+     */
+    public int getCoffeeWeight(){
+        if(getFlavor().getId() == Flavor.TYPE_YUAN_YANG || getFlavor().getId() == Flavor.TYPE_KOPI) {
+            return 2;
+        }
+        return 0;
+    }
+
+    /**
+     * Base function to calculate weight of sweeteners
+     * @param type
+     * @return
+     */
+    public int getSweetenerCompositionWeight(@Sweetener.SweetenerType int type){
+        int weight = 0;
+        if (!getSweeteners().isEmpty()) {
+            for (Sweetener sweetener : getSweeteners()) {
+                if (type == Sweetener.TYPE_CONDENSED_MILK && sweetener.isCondensedMilk()) {
+                    weight = 1;
+                    break;
+                }else if (type == Sweetener.TYPE_EVAPORATED_MILK && sweetener.isEvaporatedMilk()) {
+                    weight = 1;
+                    break;
+                }else if (type == Sweetener.TYPE_PALM_SUGAR && sweetener.isPalmSugar()) {
+                    weight = 1;
+                    break;
+                }
+            }
+        }
+        return weight;
+    }
+
 }

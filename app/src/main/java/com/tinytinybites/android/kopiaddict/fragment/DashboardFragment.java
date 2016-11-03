@@ -64,9 +64,9 @@ public class DashboardFragment extends Fragment {
         FanLayoutManagerSettings fanLayoutManagerSettings = FanLayoutManagerSettings
                                                             .newBuilder(getContext())
                                                             .withFanRadius(true)
-                                                            .withAngleItemBounce(5)
-                                                            .withViewWidthDp(120)
-                                                            .withViewHeightDp(160)
+                                                            .withAngleItemBounce(8)
+                                                            .withViewWidthDp(170)
+                                                            .withViewHeightDp(200)
                                                             .build();
         FanLayoutManager fanLayoutManager = new FanLayoutManager(getContext(), fanLayoutManagerSettings);
         mRecyclerView.setLayoutManager(fanLayoutManager);

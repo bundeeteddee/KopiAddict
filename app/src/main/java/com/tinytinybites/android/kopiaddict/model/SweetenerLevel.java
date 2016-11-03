@@ -102,4 +102,17 @@ public class SweetenerLevel extends RealmObject {
         }
         return null;
     }
+
+    public boolean isNormalSweetness(){ return getId() == TYPE_100;}
+    public boolean isHalfSweetness(){ return getId() == TYPE_50;}
+    public boolean isQuarterSweetness(){ return getId() == TYPE_25;}
+    public boolean isNoSweetness(){ return getId() == TYPE_0;}
+    public boolean isExtraSweetness(){ return getId() == TYPE_150;}
+
+    public String getSweetenessFriendlyString(){
+        if(isNormalSweetness()){
+            return null;
+        }
+        return getSelectionName();
+    }
 }

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">KopiAddict</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Drinks -->
     <string name="flavor_coffee">Coffee</string>
     <string name="flavor_tea">Tea</string>
     <string name="flavor_both">Coffee + Tea</string>
@@ -22,5 +24,10 @@
     <string name="concentration_level_stronger">Stronger</string>
     <string name="concentration_level_weaker_local">PO</string>
     <string name="concentration_level_stronger.local">Gao</string>
+    <string name="drink_combo_o">O</string>
+    <string name="drink_combo_c">C</string>
+    <string name="drink_combo_iced">Peng</string>
+    <string name="dashboard_start_button">Tap Here To Start</string>
+
 
 </resources>

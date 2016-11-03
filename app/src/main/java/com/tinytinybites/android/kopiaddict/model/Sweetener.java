@@ -95,5 +95,15 @@ public class Sweetener extends RealmObject {
         return null;
     }
 
+    public boolean isEvaporatedMilk(){
+        return getId() == TYPE_EVAPORATED_MILK;
+    }
 
+    public boolean isCondensedMilk(){
+        return getId() == TYPE_CONDENSED_MILK;
+    }
+
+    public boolean isPalmSugar(){
+        return getId() == TYPE_PALM_SUGAR;
+    }
 }

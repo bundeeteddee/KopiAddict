@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -11,7 +12,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/app_bg_pattern">
 
         <!-- spacer -->
         <View
@@ -22,10 +24,21 @@
             android:layout_alignParentTop="true"
             />
 
-        <!-- Ensure question and answer is scrollable, for longer content-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/transparent"
+            tools:listitem="@layout/recyclerview_item_drink"
+            />
+
+        <!-- Ensure scrollable -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/recycler_view"
+            android:layout_alignParentTop="true"
             android:fillViewport="true">
 
             <!-- Single container for scrollview -->
@@ -58,14 +71,15 @@
                     app:cardCornerRadius="3dp"
                     app:cardUseCompatPadding="true"
                     app:cardPreventCornerOverlap="false"
+                    app:cardBackgroundColor="@color/primary_light"
                     >
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:padding="@dimen/dashboard_start_block_padding"
-                        android:background="@color/primary_light">
+                        android:orientation="vertical"
+                        android:padding="@dimen/dashboard_start_block_padding">
 
                         <ImageView
                             android:id="@+id/cup"
@@ -74,29 +88,29 @@
                             android:layout_marginTop="@dimen/dashboard_cup_margin"
                             android:layout_marginBottom="@dimen/dashboard_cup_margin"
                             android:src="@drawable/ico_cup"
-                            android:layout_centerHorizontal="true"/>
+                            android:layout_gravity="center_horizontal"/>
 
                         <TextView
                             style="@style/Common.Header.InfoText"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/cup"
                             android:layout_centerHorizontal="true"
+                            android:gravity="center_horizontal"
+                            android:layout_marginBottom="@dimen/dashboard_info_margin_bottom"
                             android:text="Order your drinks like a local"/>
 
+                        <Button
+                            style="@style/Common.Header.Button"
+                            android:id="@+id/start_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dashboard_start_button"
+                            android:textAlignment="center"
+                            android:background="@drawable/ripple"/>
 
-
-                    </RelativeLayout>
+                    </LinearLayout>
 
                 </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recycler_view"
-                    android:background="@null"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_below="@+id/startBlock"
-                    />
 
             </RelativeLayout>
 

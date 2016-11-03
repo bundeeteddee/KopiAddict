@@ -28,21 +28,91 @@
             android:layout_gravity="center_vertical"
             android:padding="@dimen/dashboard_drink_card_padding">
 
-            <ImageView
-                android:id="@+id/cup"
-                android:layout_width="@dimen/dashboard_drink_cup_size"
-                android:layout_height="@dimen/dashboard_drink_cup_size"
-                android:src="@drawable/ico_cup"
-                android:layout_centerHorizontal="true"/>
-
             <TextView
-                style="@style/Common.Header.InfoText"
+                style="@style/Drink.Name"
+                android:id="@+id/drink_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cup"
                 android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/drink_composition_margin_bottom"
                 android:text="@{drink.friendlyDrinkName}"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
                 tools:text="Kopi C"/>
+
+            <LinearLayout
+                android:id="@+id/drinks_composition"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/drink_name"
+                android:paddingBottom="@dimen/drink_composition_padding"
+                android:paddingTop="@dimen/drink_composition_padding"
+                android:paddingLeft="@dimen/drink_composition_padding_sides"
+                android:paddingRight="@dimen/drink_composition_padding_sides"
+                android:background="@color/drinks_card_container"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/com_water"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/drink_composition_margin"
+                    android:background="@color/drinks_com_water"
+                    android:layout_weight="1"
+                    />
+
+                <View
+                    android:id="@+id/com_evaporated_milk"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/drink_composition_margin"
+                    android:background="@color/drinks_com_evaporated_milk"
+                    android:visibility="gone"
+                    app:layoutWeight="@{drink.evaporatedMilkWeight}"
+                    />
+
+                <View
+                    android:id="@+id/com_condensed_milk"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/drink_composition_margin"
+                    android:background="@color/drinks_com_condensed_milk"
+                    android:visibility="gone"
+                    app:layoutWeight="@{drink.condensedMilkWeight}"
+                    />
+
+                <View
+                    android:id="@+id/com_palm_sugar"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/drink_composition_margin"
+                    android:background="@color/drinks_com_palm_sugar"
+                    android:visibility="gone"
+                    app:layoutWeight="@{drink.palmSugarWeight}"
+                    />
+
+                <View
+                    android:id="@+id/com_tea"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/drink_composition_margin"
+                    android:background="@color/drinks_com_tea"
+                    android:visibility="gone"
+                    app:layoutWeight="@{drink.teaWeight}"
+                    />
+
+                <View
+                    android:id="@+id/com_coffee"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/drink_composition_margin"
+                    android:background="@color/drinks_com_coffee"
+                    android:visibility="gone"
+                    app:layoutWeight="@{drink.coffeeWeight}"
+                    />
+            </LinearLayout>
 
         </RelativeLayout>
 

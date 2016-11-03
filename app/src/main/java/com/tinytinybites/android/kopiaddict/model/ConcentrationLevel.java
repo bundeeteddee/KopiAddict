@@ -93,4 +93,11 @@ public class ConcentrationLevel extends RealmObject {
     public String getSelectionName() {
         return selectionName;
     }
+
+    public String getConcentrationFriendlyString(){
+        if(getId() == TYPE_NORMAL){
+            return null;
+        }
+        return getSelectionName();
+    }
 }
