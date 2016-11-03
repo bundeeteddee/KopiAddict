@@ -18,6 +18,9 @@ public class ConcentrationLevel extends RealmObject {
     //Tag
     protected static final String TAG = ConcentrationLevel.class.getSimpleName();
 
+    //Key for searching/sorting
+    public static final String KEY_ID = "id";
+
     //Type Options
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({TYPE_WEAKER, TYPE_NORMAL, TYPE_STRONGER})
@@ -30,10 +33,14 @@ public class ConcentrationLevel extends RealmObject {
     @PrimaryKey
     private @ConcentrationLevelType int id;
 
-    @Index
-    private String name; //i.e. 'Weaker', 'Normal', 'Stronger'
-
+    @Index private String name; //i.e. 'Weaker', 'Normal', 'Stronger'
     private String selectionName; //i.e. 'PO', 'Gao' etc
+
+    /**
+     * Default constructor for Realm
+     */
+    public ConcentrationLevel() {
+    }
 
     /**
      * Convenient constructor based on type
@@ -73,5 +80,17 @@ public class ConcentrationLevel extends RealmObject {
             case TYPE_STRONGER: return EApplication.getInstance().getString(R.string.concentration_level_stronger_local);
         }
         return null;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSelectionName() {
+        return selectionName;
     }
 }

@@ -19,6 +19,9 @@ public class Flavor extends RealmObject{
     //Tag
     protected static final String TAG = Flavor.class.getSimpleName();
 
+    //Key for searching
+    public static final String KEY_ID = "id";
+
     //Type Options
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({TYPE_KOPI, TYPE_TEH, TYPE_YUAN_YANG})
@@ -37,6 +40,12 @@ public class Flavor extends RealmObject{
     private String selectionName; //i.e. 'Kopi', 'Teh', 'Yuan Yang'
 
     /**
+     * Default constructor for Realm
+     */
+    public Flavor() {
+    }
+
+    /**
      * Convenient constructor based on type
      * @param type
      */
@@ -44,6 +53,18 @@ public class Flavor extends RealmObject{
         id = type;
         name = getNameForId(type);
         selectionName = getSelectionNameForId(type);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSelectionName() {
+        return selectionName;
     }
 
     /**

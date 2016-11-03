@@ -18,6 +18,9 @@ public class Sweetener extends RealmObject {
     //Tag
     protected static final String TAG = Sweetener.class.getSimpleName();
 
+    //Key for searching
+    public static final String KEY_ID = "id";
+
     //Variables
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({TYPE_CONDENSED_MILK, TYPE_EVAPORATED_MILK, TYPE_PALM_SUGAR})
@@ -35,6 +38,12 @@ public class Sweetener extends RealmObject {
     private String selectionName; //i.e. '' for condensed milk, 'C' for evaporated milk, 'Gula Melaka' for palm sugar
 
     /**
+     * Default constructor for Realm
+     */
+    public Sweetener() {
+    }
+
+    /**
      * Convenient constructor based on type
      * @param type
      */
@@ -42,6 +51,18 @@ public class Sweetener extends RealmObject {
         id = type;
         name = getNameForId(type);
         selectionName = getSelectionNameForId(type);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSelectionName() {
+        return selectionName;
     }
 
     /**

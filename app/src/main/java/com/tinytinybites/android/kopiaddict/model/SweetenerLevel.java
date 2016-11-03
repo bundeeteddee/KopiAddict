@@ -18,6 +18,9 @@ public class SweetenerLevel extends RealmObject {
     //Tag
     protected static final String TAG = SweetenerLevel.class.getSimpleName();
 
+    //Database key for search/load
+    public static final String KEY_ID = "id";
+
     //Type Options
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({TYPE_0, TYPE_25, TYPE_50, TYPE_100, TYPE_150})
@@ -37,6 +40,13 @@ public class SweetenerLevel extends RealmObject {
 
     private String selectionName; //i.e. 'Kosong', 'Siew Dai', 'Ga Dai' etc
 
+
+    /**
+     * Default constructor for Realm
+     */
+    public SweetenerLevel() {
+    }
+
     /**
      * Convenient constructor based on type
      * @param type
@@ -45,6 +55,18 @@ public class SweetenerLevel extends RealmObject {
         id = type;
         name = getNameForId(type);
         selectionName = getSelectionNameForId(type);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSelectionName() {
+        return selectionName;
     }
 
     /**

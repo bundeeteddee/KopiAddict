@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="primary">#795548</color>
+    <color name="primary_dark">#5D4037</color>
+    <color name="primary_light">#D7CCC8</color>
+    <color name="accent">#FF9800</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+
+    <!-- Drinks Card -->
+    <color name="drinks_card_bg_1">#FF795548</color>
+    <color name="drinks_card_bg_2">#FFFF9800</color>
+    <color name="drinks_card_bg_3">#FFCDDC39</color>
+    <color name="drinks_card_bg_4">#FF607D8B</color>
+    <color name="drinks_card_bg_5">#FF009688</color>
+    <color name="drinks_card_bg_6">#FF673AB7</color>
+    <color name="drinks_card_bg_7">#FF2196F3</color>
+
 </resources>

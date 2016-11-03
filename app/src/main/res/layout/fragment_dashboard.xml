@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="dashboardViewModel"
+            type="com.tinytinybites.android.kopiaddict.viewmodel.DashboardViewModel"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- spacer -->
+        <View
+            android:id="@+id/topPanel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_extra_view"
+            android:background="@color/primary_dark"
+            android:layout_alignParentTop="true"
+            />
+
+        <!-- Ensure question and answer is scrollable, for longer content-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <!-- Single container for scrollview -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- Header -->
+                <TextView
+                    style="@style/Common.Header.Toolbar"
+                    android:id="@+id/header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dashboard_logo_margin"
+                    android:layout_marginBottom="@dimen/dashboard_logo_margin"
+                    android:layout_centerHorizontal="true"
+                    android:text="Yum Cha"
+                    />
+
+                <!-- Starting Block -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/startBlock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/header"
+                    android:layout_marginLeft="@dimen/dashboard_start_block_margin_side"
+                    android:layout_marginRight="@dimen/dashboard_start_block_margin_side"
+                    android:onClick="@{dashboardViewModel.onStartNewConction}"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="3dp"
+                    app:cardUseCompatPadding="true"
+                    app:cardPreventCornerOverlap="false"
+                    >
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:padding="@dimen/dashboard_start_block_padding"
+                        android:background="@color/primary_light">
+
+                        <ImageView
+                            android:id="@+id/cup"
+                            android:layout_width="@dimen/dashboard_cup_size"
+                            android:layout_height="@dimen/dashboard_cup_size"
+                            android:layout_marginTop="@dimen/dashboard_cup_margin"
+                            android:layout_marginBottom="@dimen/dashboard_cup_margin"
+                            android:src="@drawable/ico_cup"
+                            android:layout_centerHorizontal="true"/>
+
+                        <TextView
+                            style="@style/Common.Header.InfoText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/cup"
+                            android:layout_centerHorizontal="true"
+                            android:text="Order your drinks like a local"/>
+
+
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:background="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/startBlock"
+                    />
+
+            </RelativeLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+
+</layout>

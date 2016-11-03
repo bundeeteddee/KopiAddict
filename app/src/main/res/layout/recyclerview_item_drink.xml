@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="drink"
+            type="com.tinytinybites.android.kopiaddict.model.Drink" />
+    </data>
+
+    <!-- Starting Block -->
+    <android.support.v7.widget.CardView
+        android:id="@+id/drinkCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="3dp"
+        app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="false"
+        app:cardBackgroundColor="@{drink.colorResId}"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/dashboard_drink_card_padding">
+
+            <ImageView
+                android:id="@+id/cup"
+                android:layout_width="@dimen/dashboard_drink_cup_size"
+                android:layout_height="@dimen/dashboard_drink_cup_size"
+                android:src="@drawable/ico_cup"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                style="@style/Common.Header.InfoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cup"
+                android:layout_centerHorizontal="true"
+                android:text="@{drink.friendlyDrinkName}"
+                tools:text="Kopi C"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>
