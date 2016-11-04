@@ -23,6 +23,7 @@ public class DrinkRecyclerViewAdapter extends RealmRecyclerViewAdapter<Drink, Dr
     protected static final String TAG = DrinkRecyclerViewAdapter.class.getSimpleName();
 
     //Variables
+    private OnDrinkSelectedListener mDrinkSelectedListener;
 
     /**
      * Constructor
@@ -41,7 +42,7 @@ public class DrinkRecyclerViewAdapter extends RealmRecyclerViewAdapter<Drink, Dr
     }
 
     @Override
-    public void onBindViewHolder(DrinkViewHolder holder, int position) {
+    public void onBindViewHolder(final DrinkViewHolder holder, final int position) {
         //Get item
         Drink drink = getData().get(position);
 
@@ -50,6 +51,16 @@ public class DrinkRecyclerViewAdapter extends RealmRecyclerViewAdapter<Drink, Dr
 
         holder.getBinding().setVariable(com.tinytinybites.android.kopiaddict.BR.drink, drink);
         holder.getBinding().executePendingBindings();
+
+        //Attach click listener on entire card
+        holder.getBinding().getRoot().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mDrinkSelectedListener != null){
+                    mDrinkSelectedListener.OnDrinkClicked(holder.getAdapterPosition(), holder.getBinding().getRoot());
+                }
+            }
+        });
     }
 
     @Override
@@ -57,6 +68,19 @@ public class DrinkRecyclerViewAdapter extends RealmRecyclerViewAdapter<Drink, Dr
         return getData().size();
     }
 
+    public OnDrinkSelectedListener getDrinkSelectedListener() {
+        return mDrinkSelectedListener;
+    }
+
+    public void setDrinkSelectedListener(OnDrinkSelectedListener drinkSelectedListener) {
+        this.mDrinkSelectedListener = drinkSelectedListener;
+    }
+
+    /**
+     * Assign a color to card background based on position
+     * @param position
+     * @return
+     */
     private int getCardBackgroundColorBasedOnPosition(int position){
         switch ((position+1)%7){
             case 0: return R.color.drinks_card_bg_1;
@@ -67,6 +91,13 @@ public class DrinkRecyclerViewAdapter extends RealmRecyclerViewAdapter<Drink, Dr
             case 5: return R.color.drinks_card_bg_6;
             default: return R.color.drinks_card_bg_7;
         }
+    }
+
+    /**
+     * Interface for view holder items
+     */
+    public interface OnDrinkSelectedListener{
+        void OnDrinkClicked(int pos, View view);
     }
 
 }

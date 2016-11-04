@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,19 +21,20 @@ import com.tinytinybites.android.kopiaddict.application.EApplication;
 import com.tinytinybites.android.kopiaddict.common.BundleUtil;
 import com.tinytinybites.android.kopiaddict.dao.DrinkDao;
 import com.tinytinybites.android.kopiaddict.databinding.FragmentDashboardBinding;
-import com.tinytinybites.android.kopiaddict.view.DividerItemDecoration;
 import com.tinytinybites.android.kopiaddict.viewmodel.DashboardViewModel;
 
 /**
  * Created by bundee on 11/2/16.
  */
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdapter.OnDrinkSelectedListener {
     //Tag
     protected static final String TAG = DashboardFragment.class.getSimpleName();
 
     //Variables
     private FragmentDashboardBinding mBinding;
+    private FanLayoutManager mFanLayoutManager;
+    private DrinkRecyclerViewAdapter mDrinksAdapter;
     private DashboardViewModel mDashboardViewModel;
     private RecyclerView mRecyclerView;
     private TextView mHeaderTextView;
@@ -75,14 +77,18 @@ public class DashboardFragment extends Fragment {
                                                             .newBuilder(getContext())
                                                             .withFanRadius(true)
                                                             .withAngleItemBounce(8)
-                                                            .withViewWidthDp(170)
-                                                            .withViewHeightDp(200)
+                                                            .withViewWidthDp(140)
+                                                            .withViewHeightDp(180)
                                                             .build();
-        FanLayoutManager fanLayoutManager = new FanLayoutManager(getContext(), fanLayoutManagerSettings);
-        mRecyclerView.setLayoutManager(fanLayoutManager);
-        mRecyclerView.setAdapter(new DrinkRecyclerViewAdapter(getActivity(), DrinkDao.getInstance().loadAllAsync()));
+        mFanLayoutManager = new FanLayoutManager(getContext(), fanLayoutManagerSettings);
+        mRecyclerView.setLayoutManager(mFanLayoutManager);
+        mDrinksAdapter = new DrinkRecyclerViewAdapter(getActivity(), DrinkDao.getInstance().loadAllAsync());
+        mDrinksAdapter.setDrinkSelectedListener(this);
+
+        mRecyclerView.setAdapter(mDrinksAdapter);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+        //mRecyclerView.setChildDrawingOrderCallback(new FanChildDrawingOrderCallback(mFanLayoutManager));
+
         return mBinding.getRoot();
     }
 
@@ -94,4 +100,47 @@ public class DashboardFragment extends Fragment {
     }
 
 
+    @Override
+    public void OnDrinkClicked(int pos, final View view) {
+        Log.e(TAG, "OnDrinkClicked > " + pos + " > " + mFanLayoutManager.getSelectedItemPosition());
+        if (mFanLayoutManager.getSelectedItemPosition() != pos) {
+            mFanLayoutManager.switchItem(mRecyclerView, pos);
+        } else {
+            /*mFanLayoutManager.straightenSelectedItem(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    Log.e(TAG, "Animation End >>>>> ");
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        //onClick(view, mFanLayoutManager.getSelectedItemPosition());
+                    } else {
+                        //onClick(mFanLayoutManager.getSelectedItemPosition());
+                    }
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+
+                }
+            });*/
+        }
+    }
+
+    public boolean deselectIfSelected() {
+        if (mFanLayoutManager.isItemSelected()) {
+            mFanLayoutManager.deselectItem();
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

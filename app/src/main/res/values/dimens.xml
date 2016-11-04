@@ -5,20 +5,22 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!-- Dashboard -->
-    <dimen name="toolbar_extra_view">80dp</dimen>
+    <dimen name="toolbar_extra_view">160dp</dimen>
     <dimen name="dashboard_logo_margin">8dp</dimen>
-    <dimen name="dashboard_start_block_margin_side">60dp</dimen>
     <dimen name="dashboard_start_block_padding">15dp</dimen>
-    <dimen name="dashboard_cup_size">150dp</dimen>
-    <dimen name="dashboard_cup_margin">10dp</dimen>
+    <dimen name="dashboard_cup_size">220dp</dimen>
+    <dimen name="dashboard_cup_margin">-10dp</dimen>
     <dimen name="dashboard_drink_card_padding">20dp</dimen>
     <dimen name="dashboard_drink_cup_size">80dp</dimen>
+    <dimen name="dashboard_button_margin_side">60dp</dimen>
 
     <!-- Drinks-->
     <dimen name="drink_composition_margin">2dp</dimen>
     <dimen name="drink_composition_padding">5dp</dimen>
     <dimen name="drink_composition_padding_sides">3dp</dimen>
     <dimen name="drink_composition_margin_bottom">5dp</dimen>
-    <dimen name="dashboard_info_margin_bottom">15dp</dimen>
+    <dimen name="dashboard_info_margin_bottom">10dp</dimen>
+    <dimen name="dashboard_info_margin_top">-20dp</dimen>
+    <dimen name="dashboard_info_margin_side">20dp</dimen>
 
 </resources>
