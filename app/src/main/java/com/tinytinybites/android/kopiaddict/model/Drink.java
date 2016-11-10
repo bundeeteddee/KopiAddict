@@ -181,6 +181,11 @@ public class Drink extends RealmObject{
         return builder.toString();
     }
 
+    public String getDrinkDescription(){
+        //TODO:
+        return "Drink description here!";
+    }
+
     /**
      *
      * @return

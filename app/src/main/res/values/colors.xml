@@ -25,6 +25,9 @@
     <color name="drinks_com_palm_sugar">#2A1F1C</color>
     <color name="drinks_com_tea">#955727</color>
     <color name="drinks_com_coffee">#513730</color>
+    
+    <!-- Drinks Composition -->
+    <color name="drinks_composition_border_color">#FF000000</color>
 
     <!-- Common -->
     <color name="button_ripple">#FFCC80</color>

@@ -3,12 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="sessionViewModel"
-            type="com.tinytinybites.android.kopiaddict.viewmodel.DashboardViewModel"/>
-    </data>
-
     <fragment android:id="@+id/fragment"
               android:name="com.tinytinybites.android.kopiaddict.fragment.DashboardFragment"
               android:layout_width="match_parent"

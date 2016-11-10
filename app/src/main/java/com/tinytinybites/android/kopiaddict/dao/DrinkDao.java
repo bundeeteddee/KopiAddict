@@ -95,6 +95,18 @@ public class DrinkDao implements Dao{
     }
 
     /**
+     * Load a specific drink given an id
+     * @param id
+     * @return
+     */
+    public Drink loadDrink(String id){
+        Log.e(TAG, "loadDrink >> " + id);
+        Drink result =  mRealm.where(Drink.class).equalTo(Drink.KEY_ID, id).findFirst();
+        Log.e(TAG, "loadDrink result: " + result);
+        return result;
+    }
+
+    /**
      * Pre-populate Drinks in async mode
      */
     public void prepopulateDrinks(){

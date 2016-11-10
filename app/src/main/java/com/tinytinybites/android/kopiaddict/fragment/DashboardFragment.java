@@ -1,12 +1,12 @@
 package com.tinytinybites.android.kopiaddict.fragment;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +16,13 @@ import org.parceler.Parcels;
 import com.cleveroad.fanlayoutmanager.FanLayoutManager;
 import com.cleveroad.fanlayoutmanager.FanLayoutManagerSettings;
 import com.tinytinybites.android.kopiaddict.R;
+import com.tinytinybites.android.kopiaddict.activity.DrinkDetailActivity;
 import com.tinytinybites.android.kopiaddict.adapter.DrinkRecyclerViewAdapter;
 import com.tinytinybites.android.kopiaddict.application.EApplication;
 import com.tinytinybites.android.kopiaddict.common.BundleUtil;
 import com.tinytinybites.android.kopiaddict.dao.DrinkDao;
 import com.tinytinybites.android.kopiaddict.databinding.FragmentDashboardBinding;
+import com.tinytinybites.android.kopiaddict.model.Drink;
 import com.tinytinybites.android.kopiaddict.viewmodel.DashboardViewModel;
 
 /**
@@ -99,13 +101,17 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
         mBinding.unbind();
     }
 
-
     @Override
     public void OnDrinkClicked(int pos, final View view) {
-        Log.e(TAG, "OnDrinkClicked > " + pos + " > " + mFanLayoutManager.getSelectedItemPosition());
         if (mFanLayoutManager.getSelectedItemPosition() != pos) {
             mFanLayoutManager.switchItem(mRecyclerView, pos);
         } else {
+            Intent drinkDetailsIntent = new Intent(getActivity(), DrinkDetailActivity.class);
+            drinkDetailsIntent.putExtra(Drink.KEY_ID, ((DrinkRecyclerViewAdapter)mRecyclerView.getAdapter()).getItem(mFanLayoutManager.getSelectedItemPosition()).getId());
+            getActivity().startActivity(drinkDetailsIntent);
+
+
+
             /*mFanLayoutManager.straightenSelectedItem(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animator) {

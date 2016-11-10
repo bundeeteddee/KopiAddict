@@ -23,4 +23,11 @@
     <dimen name="dashboard_info_margin_top">-20dp</dimen>
     <dimen name="dashboard_info_margin_side">20dp</dimen>
 
+    <!-- Drinks Composition-->
+    <dimen name="ingredient_margin_top">5dp</dimen>
+    <dimen name="ingredient_image_size">50dp</dimen>
+    <dimen name="ingredient_circular_border_width">5dp</dimen>
+    <dimen name="ingredient_padding">5dp</dimen>
+    <dimen name="ingredient_margin">3dp</dimen>
+
 </resources>

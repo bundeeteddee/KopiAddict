@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="drink"
+            type="com.tinytinybites.android.kopiaddict.model.Drink" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/app_bg_pattern">
+
+        <!-- spacer -->
+        <View
+            android:id="@+id/topPanel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_extra_view"
+            android:background="@color/primary_dark"
+            android:layout_alignParentTop="true"
+            />
+
+        <!-- Ensure scrollable -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:fillViewport="true">
+
+            <!-- Single container for scrollview -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- Main Card for drinks composition -->
+                <android.support.v7.widget.CardView
+                    android:id="@+id/drink_composition_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
+                    android:background="#FFFFFF">
+
+                    <!-- Main container in card-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Equal width-->
+                        <!-- Ingredients Container -->
+                        <LinearLayout
+                            android:id="@+id/ingredients_container"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1">
+
+                            <!-- Water -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/ingredient_margin_top"
+                                android:padding="@dimen/ingredient_padding"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                app:layoutWeight="@{drink.waterCompositionWeight}">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/water_composition"
+                                    android:layout_width="@dimen/ingredient_image_size"
+                                    android:layout_height="@dimen/ingredient_image_size"
+                                    android:src="@drawable/img_composition_water_glass"
+                                    app:civ_border_width="@dimen/ingredient_circular_border_width"
+                                    app:civ_border_color="@color/drinks_com_water"/>
+
+                                <TextView
+                                    style="@style/DrinkDetail.CompositionText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Water"
+                                    android:gravity="center"/>
+
+                            </LinearLayout>
+
+                            <!-- Evaporated Milk -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/ingredient_margin_top"
+                                android:padding="@dimen/ingredient_padding"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                app:layoutWeight="@{drink.evaporatedMilkWeight}">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/evaporated_milk_composition"
+                                    android:layout_width="@dimen/ingredient_image_size"
+                                    android:layout_height="@dimen/ingredient_image_size"
+                                    android:src="@drawable/img_composition_evaporated_milk"
+                                    app:civ_border_width="@dimen/ingredient_circular_border_width"
+                                    app:civ_border_color="@color/drinks_com_evaporated_milk"/>
+
+                                <TextView
+                                    style="@style/DrinkDetail.CompositionText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Evaporated Milk"
+                                    android:gravity="center"/>
+
+                            </LinearLayout>
+
+                            <!-- Condensed Milk -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/ingredient_margin_top"
+                                android:padding="@dimen/ingredient_padding"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                app:layoutWeight="@{drink.condensedMilkWeight}">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/condensed_milk_composition"
+                                    android:layout_width="@dimen/ingredient_image_size"
+                                    android:layout_height="@dimen/ingredient_image_size"
+                                    android:src="@drawable/img_composition_condensed_milk"
+                                    app:civ_border_width="@dimen/ingredient_circular_border_width"
+                                    app:civ_border_color="@color/drinks_com_condensed_milk"/>
+
+                                <TextView
+                                    style="@style/DrinkDetail.CompositionText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Condensed Milk"
+                                    android:gravity="center"/>
+
+                            </LinearLayout>
+
+                            <!-- Gula Melaka -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/ingredient_margin_top"
+                                android:padding="@dimen/ingredient_padding"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                app:layoutWeight="@{drink.palmSugarWeight}">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/palm_sugar_composition"
+                                    android:layout_width="@dimen/ingredient_image_size"
+                                    android:layout_height="@dimen/ingredient_image_size"
+                                    android:src="@drawable/img_composition_gula_melaka"
+                                    app:civ_border_width="@dimen/ingredient_circular_border_width"
+                                    app:civ_border_color="@color/drinks_com_palm_sugar"/>
+
+                                <TextView
+                                    style="@style/DrinkDetail.CompositionText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Palm Sugar"
+                                    android:gravity="center"/>
+
+                            </LinearLayout>
+
+                            <!-- Tea -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/ingredient_margin_top"
+                                android:padding="@dimen/ingredient_padding"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                app:layoutWeight="@{drink.teaWeight}">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/tea_composition"
+                                    android:layout_width="@dimen/ingredient_image_size"
+                                    android:layout_height="@dimen/ingredient_image_size"
+                                    android:src="@drawable/img_composition_tea_leaves"
+                                    app:civ_border_width="@dimen/ingredient_circular_border_width"
+                                    app:civ_border_color="@color/drinks_com_tea"/>
+
+                                <TextView
+                                    style="@style/DrinkDetail.CompositionText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Tea"
+                                    android:gravity="center"/>
+
+                            </LinearLayout>
+
+                            <!-- Coffee -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/ingredient_margin_top"
+                                android:padding="@dimen/ingredient_padding"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                app:layoutWeight="@{drink.coffeeWeight}">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/coffee_composition"
+                                    android:layout_width="@dimen/ingredient_image_size"
+                                    android:layout_height="@dimen/ingredient_image_size"
+                                    android:src="@drawable/img_composition_coffee"
+                                    app:civ_border_width="@dimen/ingredient_circular_border_width"
+                                    app:civ_border_color="@color/drinks_com_coffee"/>
+
+                                <TextView
+                                    style="@style/DrinkDetail.CompositionText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Coffee"
+                                    android:gravity="center"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <!-- Illustration container -->
+                        <LinearLayout
+                            android:id="@+id/illustration_container"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_weight="1">
+
+
+                            <View
+                                android:id="@+id/com_water"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_margin="@dimen/drink_composition_margin"
+                                android:background="@color/drinks_com_water"
+                                android:visibility="gone"
+                                app:layoutWeight="@{drink.waterCompositionWeight}"
+                                />
+
+                            <View
+                                android:id="@+id/com_evaporated_milk"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_margin="@dimen/drink_composition_margin"
+                                android:background="@color/drinks_com_evaporated_milk"
+                                android:visibility="gone"
+                                app:layoutWeight="@{drink.evaporatedMilkWeight}"
+                                />
+
+                            <View
+                                android:id="@+id/com_condensed_milk"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_margin="@dimen/drink_composition_margin"
+                                android:background="@color/drinks_com_condensed_milk"
+                                android:visibility="gone"
+                                app:layoutWeight="@{drink.condensedMilkWeight}"
+                                />
+
+                            <View
+                                android:id="@+id/com_palm_sugar"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_margin="@dimen/drink_composition_margin"
+                                android:background="@color/drinks_com_palm_sugar"
+                                android:visibility="gone"
+                                app:layoutWeight="@{drink.palmSugarWeight}"
+                                />
+
+                            <View
+                                android:id="@+id/com_tea"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_margin="@dimen/drink_composition_margin"
+                                android:background="@color/drinks_com_tea"
+                                android:visibility="gone"
+                                app:layoutWeight="@{drink.teaWeight}"
+                                />
+
+                            <View
+                                android:id="@+id/com_coffee"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_margin="@dimen/drink_composition_margin"
+                                android:background="@color/drinks_com_coffee"
+                                android:visibility="gone"
+                                app:layoutWeight="@{drink.coffeeWeight}"
+                                />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/drink_order_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="5dp"
+                    android:background="#FFFFFF">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/DrinkDetail.Header"
+                            android:id="@+id/order_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{drink.friendlyDrinkName}"
+                            android:textAlignment="center"
+                            tools:text="Kopi C Siew Dai"/>
+
+                        <TextView
+                            style="@style/DrinkDetail.Text"
+                            android:id="@+id/order_description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{drink.drinkDescription}"
+                            android:textAlignment="center"
+                            tools:text="The drink contains both tea and coffee. Less sweet but contain both evaporated and condensed milk."/>
+
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+
+</layout>
