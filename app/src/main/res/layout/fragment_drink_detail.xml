@@ -29,13 +29,13 @@
                 android:id="@+id/drink_composition_container"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginTop="@dimen/card_container_margin_topbottom"
+                android:layout_marginLeft="@dimen/card_container_margin_side"
+                android:layout_marginRight="@dimen/card_container_margin_side"
                 android:layout_weight="0.6"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="5dp"
-                android:background="#FFFFFF">
+                app:cardCornerRadius="@dimen/card_container_corner_radius"
+                app:cardElevation="@dimen/card_container_elevation"
+                android:background="@color/drinks_detail_card_background">
 
                 <!-- Ingredients Container -->
                 <LinearLayout
@@ -52,14 +52,11 @@
                 android:id="@+id/drink_details_container"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_margin="@dimen/card_container_margin_side"
                 android:layout_weight="0.4"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="5dp"
-                android:background="#FFFFFF">
+                app:cardCornerRadius="@dimen/card_container_corner_radius"
+                app:cardElevation="@dimen/card_container_elevation"
+                android:background="@color/drinks_detail_card_background">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -70,8 +67,6 @@
 
         </LinearLayout>
 
-
     </RelativeLayout>
-
 
 </layout>

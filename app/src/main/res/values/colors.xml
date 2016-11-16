@@ -29,6 +29,9 @@
     <!-- Drinks Composition -->
     <color name="drinks_composition_border_color">#FF000000</color>
 
+    <!-- Drinks Details -->
+    <color name="drinks_detail_card_background">#FFFFFF</color>
+
     <!-- Common -->
     <color name="button_ripple">#FFCC80</color>
 
