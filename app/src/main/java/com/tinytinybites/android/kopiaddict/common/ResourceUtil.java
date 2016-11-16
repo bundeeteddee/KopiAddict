@@ -1,5 +1,6 @@
 package com.tinytinybites.android.kopiaddict.common;
 
+import android.content.Context;
 import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 
@@ -18,6 +19,17 @@ public class ResourceUtil {
      */
     public static final int GetColor(@ColorRes int colorResId){
         return ContextCompat.getColor(EApplication.getInstance(), colorResId);
+    }
+
+    /**
+     * Convert DP to Pixels
+     * @param dpSize
+     * @param context
+     * @return
+     */
+    public static final int ConvertDpToPixels(int dpSize, Context context){
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpSize * scale + 0.5f);
     }
 
 }

@@ -3,7 +3,6 @@ package com.tinytinybites.android.kopiaddict.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.tinytinybites.android.kopiaddict.R;
 import com.tinytinybites.android.kopiaddict.fragment.DrinkDetailFragment;
@@ -22,7 +21,6 @@ public class DrinkDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_drink_detail);
 
         String id = getIntent().getStringExtra(Drink.KEY_ID);
-        Log.e(TAG, "onCreateeeeee" + id + " >>> " + getIntent());
 
         showDrinkDetailFragment(id);
     }

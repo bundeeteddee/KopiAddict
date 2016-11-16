@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/ingredient_padding"
+    tools:background="@color/drinks_com_coffee"
+    tools:layout_weight="3">
+
+    <ImageView
+        android:id="@+id/ingredient_image"
+        android:layout_width="@dimen/ingredient_image_size"
+        android:layout_height="@dimen/ingredient_image_size"
+        android:layout_marginLeft="@dimen/ingredient_image_margin_side"
+        android:layout_marginRight="@dimen/ingredient_image_margin_side"
+        tools:src="@drawable/img_composition_coffee" />
+
+    <TextView
+        style="@style/DrinkDetail.CompositionText"
+        android:id="@+id/drink_detail_composition_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        tools:text="Coffee"/>
+
+</LinearLayout>

@@ -29,5 +29,6 @@
     <string name="drink_combo_iced">Peng</string>
     <string name="dashboard_start_button">Tap Here To Start</string>
 
-
+    <!-- Additional Drinks composition-->
+    <string name="drink_composition_water">Water</string>
 </resources>
