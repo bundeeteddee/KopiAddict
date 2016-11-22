@@ -174,13 +174,16 @@ public class DrinkDetailFragment extends Fragment{
 
         //Go through all components and add those that are required
         LayoutInflater layoutInflater = LayoutInflater.from(EApplication.getInstance());
+        boolean notFirst = false;
         if(waterLevel > 0){
             compositionViews.add(
                     initDrinkComponent(layoutInflater,
                             R.drawable.img_composition_water_glass,
                             R.string.drink_composition_water,
                             R.color.drinks_com_water,
-                            waterLevel/totalWeightLevel));
+                            waterLevel/totalWeightLevel,
+                            notFirst));
+            notFirst = true;
         }
         if(evapLevel > 0){
             compositionViews.add(
@@ -188,7 +191,9 @@ public class DrinkDetailFragment extends Fragment{
                             R.drawable.img_composition_evaporated_milk,
                             R.string.sweetener_evaporated_milk,
                             R.color.drinks_com_evaporated_milk,
-                            evapLevel/totalWeightLevel));
+                            evapLevel/totalWeightLevel,
+                            notFirst));
+            notFirst = true;
         }
         if(condensedLevel > 0){
             compositionViews.add(
@@ -196,7 +201,9 @@ public class DrinkDetailFragment extends Fragment{
                             R.drawable.img_composition_condensed_milk,
                             R.string.sweetener_condensed_milk,
                             R.color.drinks_com_condensed_milk,
-                            condensedLevel/totalWeightLevel));
+                            condensedLevel/totalWeightLevel,
+                            notFirst));
+            notFirst = true;
         }
         if(palmSugarLevel > 0){
             compositionViews.add(
@@ -204,7 +211,9 @@ public class DrinkDetailFragment extends Fragment{
                             R.drawable.img_composition_gula_melaka,
                             R.string.sweetener_palm_sugar,
                             R.color.drinks_com_palm_sugar,
-                            palmSugarLevel/totalWeightLevel));
+                            palmSugarLevel/totalWeightLevel,
+                            notFirst));
+            notFirst = true;
         }
         if(teaLevel > 0){
             compositionViews.add(
@@ -212,7 +221,9 @@ public class DrinkDetailFragment extends Fragment{
                             R.drawable.img_composition_tea_leaves,
                             R.string.flavor_tea,
                             R.color.drinks_com_tea,
-                            teaLevel/totalWeightLevel));
+                            teaLevel/totalWeightLevel,
+                            notFirst));
+            notFirst = true;
         }
         if(coffeeLevel > 0){
             compositionViews.add(
@@ -220,7 +231,9 @@ public class DrinkDetailFragment extends Fragment{
                             R.drawable.img_composition_coffee,
                             R.string.flavor_coffee,
                             R.color.drinks_com_coffee,
-                            coffeeLevel/totalWeightLevel));
+                            coffeeLevel/totalWeightLevel,
+                            notFirst));
+            notFirst = true;
         }
 
         return compositionViews;
@@ -255,15 +268,18 @@ public class DrinkDetailFragment extends Fragment{
                                     @DrawableRes int imageResId,
                                     @StringRes int stringResId,
                                     @ColorRes int bgColorResId,
-                                    float weightF){
+                                    float weightF,
+                                    boolean addMargin){
         //Inflate and set background color res
         LinearLayout layoutContainer = (LinearLayout) layoutInflater.inflate(R.layout.linearlayout_item_drink_composition, null, false);
         layoutContainer.setBackgroundResource(bgColorResId);
 
         //Create layout param and set margin
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
-        int marginTop = ResourceUtil.ConvertDpToPixels((int)EApplication.getInstance().getResources().getDimension(R.dimen.ingredient_margin_top), EApplication.getInstance());
-        lp.topMargin = marginTop;
+        if(addMargin) {
+            int marginTop = ResourceUtil.ConvertDpToPixels((int) EApplication.getInstance().getResources().getDimension(R.dimen.ingredient_margin_top), EApplication.getInstance());
+            lp.topMargin = marginTop;
+        }
 
         //Set image res
         ((ImageView)layoutContainer.findViewById(R.id.ingredient_image)).setImageResource(imageResId);

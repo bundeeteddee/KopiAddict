@@ -181,9 +181,90 @@ public class Drink extends RealmObject{
         return builder.toString();
     }
 
+    /**
+     * Get a longer description of the make up of this drink
+     * @return
+     */
     public String getDrinkDescription(){
-        //TODO:
-        return "Drink description here!";
+        StringBuilder builder = new StringBuilder();
+
+        //Flavor / temperature
+        if(isIced()){
+            builder.append("This is an iced ");
+        }else{
+            builder.append("This is a hot ");
+        }
+        builder.append(getFlavor().getFriendlyDescription());
+        builder.append(" drink ");
+
+        //Sweeteners
+        if(getSweeteners().isEmpty()){
+            builder.append(" with no additional sweeteners. ");
+        }else{
+            builder.append(" with additional sweeteners:");
+
+            boolean hasEvapMilk = false;
+            boolean hasCondensedMilk = false;
+            boolean hasPalmSugar = false;
+            boolean hasAccumulated = false;
+            for(Sweetener sweetener: getSweeteners()){
+                if(sweetener.isEvaporatedMilk()){
+                    hasEvapMilk = true;
+                }else if(sweetener.isCondensedMilk()){
+                    hasCondensedMilk = true;
+                }else if(sweetener.isPalmSugar()){
+                    hasPalmSugar = true;
+                }
+            }
+
+            if(hasEvapMilk){
+                builder.append(" ");
+                builder.append(EApplication.getInstance().getString(R.string.sweetener_evaporated_milk));
+                hasAccumulated = true;
+            }
+
+            if(hasCondensedMilk){
+                if(hasAccumulated){
+                    builder.append(", ");
+                }
+                builder.append(EApplication.getInstance().getString(R.string.sweetener_condensed_milk));
+                hasAccumulated = true;
+            }
+
+            if(hasPalmSugar){
+                if(hasAccumulated){
+                    builder.append(", ");
+                }
+                builder.append(EApplication.getInstance().getString(R.string.sweetener_palm_sugar));
+                hasAccumulated = true;
+            }
+
+            builder.append(". ");
+        }
+
+        //Sweetener level
+        if(getSweetenerLevel().isNormalSweetness()){
+            builder.append(" This drink has normal sweetness level (100%).");
+        }else if(getSweetenerLevel().isExtraSweetness()) {
+            builder.append(" This drink has extra sweetness added (150%).");
+        }else if(getSweetenerLevel().isHalfSweetness()) {
+            builder.append(" This drink has half sweetness level (50%).");
+        }else if(getSweetenerLevel().isQuarterSweetness()) {
+            builder.append(" This drink has quarter sweetness level (25%).");
+        }else if(getSweetenerLevel().isNoSweetness()) {
+            builder.append(" This drink has zero sweetness to it (0%).");
+        }
+
+        //Concentration level
+        if(getConcentrationLevel().isNormal()){
+            builder.append(" The concentration level is normal.");
+        }else if(getConcentrationLevel().isStronger()) {
+            builder.append(" The drink is more concentrated than normal.");
+        }else if(getConcentrationLevel().isWeaker()){
+            builder.append(" The drink is less concentrated than normal.");
+        }
+
+        return builder.toString();
     }
 
     /**
