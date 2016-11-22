@@ -314,6 +314,9 @@ public class Drink extends RealmObject{
      */
     public int getTeaWeight(){
         if(getFlavor().getId() == Flavor.TYPE_YUAN_YANG || getFlavor().getId() == Flavor.TYPE_TEH) {
+            if(getConcentrationLevel().isStronger()){
+                return 4;
+            }
             return 2;
         }
         return 0;
@@ -325,6 +328,9 @@ public class Drink extends RealmObject{
      */
     public int getCoffeeWeight(){
         if(getFlavor().getId() == Flavor.TYPE_YUAN_YANG || getFlavor().getId() == Flavor.TYPE_KOPI) {
+            if(getConcentrationLevel().isStronger()){
+                return 4;
+            }
             return 2;
         }
         return 0;
@@ -354,7 +360,10 @@ public class Drink extends RealmObject{
         return weight;
     }
 
-
+    /**
+     * Get water composition weight. Takes into account concentration level
+     * @return
+     */
     public int getWaterCompositionWeight(){
         //The rule is: Is user ask for stronger drink OR drink already contains both evaporated and condensed milk, there will be no water
         if(getConcentrationLevel().isStronger()){
@@ -377,6 +386,9 @@ public class Drink extends RealmObject{
             }
         }
 
+        if(getConcentrationLevel().isWeaker()) {
+            return 2;
+        }
         return 1;
     }
 

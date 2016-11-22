@@ -140,6 +140,7 @@ public class DrinkDao implements Dao{
                 drinks.add(MakeYuanYang());
                 drinks.add(MakeKopiPlusCSiewDai());
                 drinks.add(MakeTehCPeng());
+                drinks.add(MakeKopiCGaDaiGao());
                 realm.copyToRealmOrUpdate(drinks);
             }
         }, new Realm.Transaction.OnSuccess() {
@@ -197,7 +198,7 @@ public class DrinkDao implements Dao{
     }
 
     /**
-     * Make a Yuan Yang: coffee + evaporated milk + condensed milk, less sweet (50%)
+     * Make a Kopi + C Siew Dai : coffee + evaporated milk + condensed milk, less sweet (50%)
      * @return
      */
     public static Drink MakeKopiPlusCSiewDai(){
@@ -210,7 +211,7 @@ public class DrinkDao implements Dao{
     }
 
     /**
-     * Make a Yuan Yang: tea + evaporated milk, iced
+     * Make a Tech C Peng: tea + evaporated milk, iced
      * @return
      */
     public static Drink MakeTehCPeng(){
@@ -220,6 +221,19 @@ public class DrinkDao implements Dao{
         ConcentrationLevel concentrationLevel = new ConcentrationLevel(ConcentrationLevel.TYPE_NORMAL);
 
         return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, true, true);
+    }
+
+    /**
+     * Make a Kopi C Ga Dai Gao: coffee + evaporated milk, more sweet (150%)
+     * @return
+     */
+    public static Drink MakeKopiCGaDaiGao(){
+        Flavor flavor = new Flavor(Flavor.TYPE_KOPI);
+        RealmList<Sweetener> sweeteners = new RealmList<>(new Sweetener(Sweetener.TYPE_EVAPORATED_MILK));
+        SweetenerLevel sweetenerLevel = new SweetenerLevel(SweetenerLevel.TYPE_150);
+        ConcentrationLevel concentrationLevel = new ConcentrationLevel(ConcentrationLevel.TYPE_STRONGER);
+
+        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, false, true);
     }
 
     @Override
