@@ -106,6 +106,13 @@ public class DrinkDao implements Dao{
         return result;
     }
 
+    public Drink loadDrink(Realm realm, String id){
+        Log.e(TAG, "loadDrink >> " + id);
+        Drink result =  realm.where(Drink.class).equalTo(Drink.KEY_ID, id).findFirst();
+        Log.e(TAG, "loadDrink result: " + result);
+        return result;
+    }
+
     /**
      * Pre-populate Drinks in async mode
      */

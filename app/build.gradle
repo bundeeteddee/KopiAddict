@@ -49,6 +49,7 @@ dependencies {
     //Circle ImageView
     compile 'de.hdodenhof:circleimageview:2.1.0'
 
-    //Android Tag Group
-    compile 'me.gujun.android.taggroup:library:1.4@aar'
+    //Chip cloud
+    //Ref: https://github.com/fiskurgit/ChipCloud
+    compile 'com.github.fiskurgit:ChipCloud:2.1.0'
 }

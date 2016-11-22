@@ -31,9 +31,12 @@
     <dimen name="ingredient_padding">5dp</dimen>
     <dimen name="ingredient_margin">2dp</dimen>
     <dimen name="ingredients_container_margin">10dp</dimen>
-    <dimen name="card_container_margin_side">20</dimen>
-    <dimen name="card_container_margin_topbottom">20</dimen>
-    <dimen name="card_container_corner_radius">5</dimen>
-    <dimen name="card_container_elevation">5</dimen>
+    <dimen name="card_container_margin_side">20dp</dimen>
+    <dimen name="card_container_margin_topbottom">20dp</dimen>
+    <dimen name="card_container_corner_radius">5dp</dimen>
+    <dimen name="card_container_elevation">5dp</dimen>
+    <dimen name="drink_description_container_padding">10dp</dimen>
+    <dimen name="drink_description_text_margin_top">10dp</dimen>
+    <dimen name="drink_description_text_margin_bottom">10dp</dimen>
 
 </resources>

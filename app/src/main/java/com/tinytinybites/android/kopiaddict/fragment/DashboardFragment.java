@@ -109,35 +109,6 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
             Intent drinkDetailsIntent = new Intent(getActivity(), DrinkDetailActivity.class);
             drinkDetailsIntent.putExtra(Drink.KEY_ID, ((DrinkRecyclerViewAdapter)mRecyclerView.getAdapter()).getItem(mFanLayoutManager.getSelectedItemPosition()).getId());
             getActivity().startActivity(drinkDetailsIntent);
-
-
-
-            /*mFanLayoutManager.straightenSelectedItem(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animator) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    Log.e(TAG, "Animation End >>>>> ");
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        //onClick(view, mFanLayoutManager.getSelectedItemPosition());
-                    } else {
-                        //onClick(mFanLayoutManager.getSelectedItemPosition());
-                    }
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animator) {
-
-                }
-
-                @Override
-                public void onAnimationRepeat(Animator animator) {
-
-                }
-            });*/
         }
     }
 

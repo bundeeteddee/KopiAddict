@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="drink"
+            type="com.tinytinybites.android.kopiaddict.model.Drink"/>
+    </data>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,6 +48,7 @@
                     android:id="@+id/ingredients_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:animateLayoutChanges="true"
                     android:layout_margin="@dimen/ingredients_container_margin"
                     android:orientation="vertical" />
 
@@ -58,10 +65,31 @@
                 app:cardElevation="@dimen/card_container_elevation"
                 android:background="@color/drinks_detail_card_background">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Drink Description HERE"/>
+                    android:orientation="vertical"
+                    android:padding="@dimen/drink_description_container_padding">
+
+                    <TextView
+                        style="@style/DrinkDetail.DrinkName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="@{drink.friendlyDrinkName}"
+                        android:layout_marginBottom="@dimen/drink_description_text_margin_top"
+                        android:layout_marginTop="@dimen/drink_description_text_margin_bottom"/>
+
+                    <TextView
+                        style="@style/DrinkDetail.Description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:text="Drink Description HERE"/>
+
+                </LinearLayout>
+
+
 
             </android.support.v7.widget.CardView>
 

@@ -2,9 +2,7 @@ package com.tinytinybites.android.kopiaddict.model;
 
 import android.databinding.BindingAdapter;
 import android.support.annotation.ColorRes;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import java.util.UUID;
@@ -197,27 +195,6 @@ public class Drink extends RealmObject{
         LinearLayout.LayoutParams lp = ((LinearLayout.LayoutParams)view.getLayoutParams());
         lp.weight = weight;
         view.setLayoutParams(lp);
-
-        if(weight > 0){
-            view.setVisibility(View.VISIBLE);
-        }else{
-            view.setVisibility(View.GONE);
-        }
-    }
-
-    /**
-     *
-     * @return
-     */
-    @BindingAdapter("llLayoutWeight")
-    public static void llweight(final LinearLayout view, int weight) {
-        //LinearLayout.LayoutParams lp = ((LinearLayout.LayoutParams)view.getLayoutParams());
-        Log.e(TAG, "Come on wtf: !!! >>>>>> " + weight);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, (float)weight);
-
-        //lp.weight = weight;
-        view.setLayoutParams(lp);
-
 
         if(weight > 0){
             view.setVisibility(View.VISIBLE);
