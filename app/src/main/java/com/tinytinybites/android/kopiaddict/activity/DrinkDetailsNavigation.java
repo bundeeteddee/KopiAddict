@@ -9,5 +9,6 @@ import android.view.View;
 public interface DrinkDetailsNavigation {
 
     void OnShowDrinkDetails(String drinkId, View topPanel, View background);
+    void OnBackPressed();
 
 }

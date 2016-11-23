@@ -62,4 +62,9 @@ public class MainActivity extends AppCompatActivity implements DrinkDetailsNavig
         ft.commit();
     }
 
+    @Override
+    public void OnBackPressed() {
+        getSupportFragmentManager().popBackStackImmediate();
+    }
+
 }

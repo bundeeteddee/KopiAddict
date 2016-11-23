@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import com.tinytinybites.android.kopiaddict.R;
+import com.tinytinybites.android.kopiaddict.activity.DrinkDetailsNavigation;
 import com.tinytinybites.android.kopiaddict.application.EApplication;
 import com.tinytinybites.android.kopiaddict.common.ResourceUtil;
 import com.tinytinybites.android.kopiaddict.dao.DrinkDao;
@@ -39,7 +40,7 @@ import rx.schedulers.Schedulers;
  * Created by bundee on 11/9/16.
  */
 
-public class DrinkDetailFragment extends Fragment{
+public class DrinkDetailFragment extends Fragment implements View.OnClickListener{
     //Tag
     protected static final String TAG = DrinkDetailFragment.class.getSimpleName();
 
@@ -101,6 +102,9 @@ public class DrinkDetailFragment extends Fragment{
         //Get reference to ingredient linear layout
         mIngredientLinearLayout = (LinearLayout) mBinding.getRoot().findViewById(R.id.ingredients_container);
         mCloseButton = (ImageView) mBinding.getRoot().findViewById(R.id.close);
+
+        //Set listeners
+        mCloseButton.setOnClickListener(this);
 
         return mBinding.getRoot();
     }
@@ -296,4 +300,13 @@ public class DrinkDetailFragment extends Fragment{
         return layoutContainer;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.close:{
+                ((DrinkDetailsNavigation)getActivity()).OnBackPressed();
+                break;
+            }
+        }
+    }
 }
