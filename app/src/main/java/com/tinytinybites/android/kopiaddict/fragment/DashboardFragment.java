@@ -1,6 +1,5 @@
 package com.tinytinybites.android.kopiaddict.fragment;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -16,13 +15,12 @@ import org.parceler.Parcels;
 import com.cleveroad.fanlayoutmanager.FanLayoutManager;
 import com.cleveroad.fanlayoutmanager.FanLayoutManagerSettings;
 import com.tinytinybites.android.kopiaddict.R;
-import com.tinytinybites.android.kopiaddict.activity.DrinkDetailActivity;
+import com.tinytinybites.android.kopiaddict.activity.DrinkDetailsNavigation;
 import com.tinytinybites.android.kopiaddict.adapter.DrinkRecyclerViewAdapter;
 import com.tinytinybites.android.kopiaddict.application.EApplication;
 import com.tinytinybites.android.kopiaddict.common.BundleUtil;
 import com.tinytinybites.android.kopiaddict.dao.DrinkDao;
 import com.tinytinybites.android.kopiaddict.databinding.FragmentDashboardBinding;
-import com.tinytinybites.android.kopiaddict.model.Drink;
 import com.tinytinybites.android.kopiaddict.viewmodel.DashboardViewModel;
 
 /**
@@ -106,9 +104,13 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
         if (mFanLayoutManager.getSelectedItemPosition() != pos) {
             mFanLayoutManager.switchItem(mRecyclerView, pos);
         } else {
-            Intent drinkDetailsIntent = new Intent(getActivity(), DrinkDetailActivity.class);
+            //Use fragment manager, instead of a new activity
+            /*Intent drinkDetailsIntent = new Intent(getActivity(), DrinkDetailActivity.class);
             drinkDetailsIntent.putExtra(Drink.KEY_ID, ((DrinkRecyclerViewAdapter)mRecyclerView.getAdapter()).getItem(mFanLayoutManager.getSelectedItemPosition()).getId());
-            getActivity().startActivity(drinkDetailsIntent);
+            getActivity().startActivity(drinkDetailsIntent);*/
+            ((DrinkDetailsNavigation)getActivity()).OnShowDrinkDetails(((DrinkRecyclerViewAdapter)mRecyclerView.getAdapter()).getItem(mFanLayoutManager.getSelectedItemPosition()).getId(),
+                    mBinding.topPanel,
+                    mBinding.mainBackground);
         }
     }
 

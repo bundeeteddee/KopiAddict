@@ -2,6 +2,13 @@
     <string name="app_name">KopiAddict</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Common -->
+    <string name="close">Close</string>
+
+    <!-- Transition Items -->
+    <string name="transition_top_panel" translatable="false">transition_top_panel</string>
+    <string name="transition_background" translatable="false">transition_background</string>
+
     <!-- Drinks -->
     <string name="flavor_coffee">Coffee</string>
     <string name="flavor_tea">Tea</string>

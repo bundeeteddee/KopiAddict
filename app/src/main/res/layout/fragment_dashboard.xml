@@ -11,9 +11,11 @@
     </data>
 
     <RelativeLayout
+        android:id="@+id/main_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_bg_pattern">
+        android:background="@drawable/app_bg_pattern"
+        android:transitionName="@string/transition_background">
 
         <!-- spacer -->
         <View
@@ -22,6 +24,7 @@
             android:layout_height="@dimen/toolbar_extra_view"
             android:background="@color/primary_dark"
             android:layout_alignParentTop="true"
+            android:transitionName="@string/transition_top_panel"
             />
 
         <!-- Ensure scrollable -->

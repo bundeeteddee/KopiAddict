@@ -48,6 +48,7 @@ public class DrinkDetailFragment extends Fragment{
     private String mDrinkId;
     private Drink mDrink;
     private LinearLayout mIngredientLinearLayout;
+    private ImageView mCloseButton;
     private Subscription mSubscription;
 
     /**
@@ -99,6 +100,7 @@ public class DrinkDetailFragment extends Fragment{
 
         //Get reference to ingredient linear layout
         mIngredientLinearLayout = (LinearLayout) mBinding.getRoot().findViewById(R.id.ingredients_container);
+        mCloseButton = (ImageView) mBinding.getRoot().findViewById(R.id.close);
 
         return mBinding.getRoot();
     }
