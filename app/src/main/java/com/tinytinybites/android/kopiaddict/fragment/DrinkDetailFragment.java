@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import com.tinytinybites.android.kopiaddict.R;
-import com.tinytinybites.android.kopiaddict.activity.DrinkDetailsNavigation;
+import com.tinytinybites.android.kopiaddict.activity.DrinkControlNavigation;
 import com.tinytinybites.android.kopiaddict.application.EApplication;
 import com.tinytinybites.android.kopiaddict.common.ResourceUtil;
 import com.tinytinybites.android.kopiaddict.dao.DrinkDao;
@@ -83,6 +83,16 @@ public class DrinkDetailFragment extends Fragment implements View.OnClickListene
 
         }*/
         mDrinkId = arguments.getString(Drink.KEY_ID);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
     }
 
     @Override
@@ -304,7 +314,7 @@ public class DrinkDetailFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.close:{
-                ((DrinkDetailsNavigation)getActivity()).OnBackPressed();
+                ((DrinkControlNavigation)getActivity()).OnBackPressed();
                 break;
             }
         }

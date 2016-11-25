@@ -9,13 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.parceler.Parcels;
 import com.cleveroad.fanlayoutmanager.FanLayoutManager;
 import com.cleveroad.fanlayoutmanager.FanLayoutManagerSettings;
 import com.tinytinybites.android.kopiaddict.R;
-import com.tinytinybites.android.kopiaddict.activity.DrinkDetailsNavigation;
+import com.tinytinybites.android.kopiaddict.activity.DrinkControlNavigation;
 import com.tinytinybites.android.kopiaddict.adapter.DrinkRecyclerViewAdapter;
 import com.tinytinybites.android.kopiaddict.application.EApplication;
 import com.tinytinybites.android.kopiaddict.common.BundleUtil;
@@ -27,7 +28,7 @@ import com.tinytinybites.android.kopiaddict.viewmodel.DashboardViewModel;
  * Created by bundee on 11/2/16.
  */
 
-public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdapter.OnDrinkSelectedListener {
+public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdapter.OnDrinkSelectedListener, View.OnClickListener {
     //Tag
     protected static final String TAG = DashboardFragment.class.getSimpleName();
 
@@ -38,6 +39,7 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
     private DashboardViewModel mDashboardViewModel;
     private RecyclerView mRecyclerView;
     private TextView mHeaderTextView;
+    private Button mStartButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,8 +79,8 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
                                                             .newBuilder(getContext())
                                                             .withFanRadius(true)
                                                             .withAngleItemBounce(8)
-                                                            .withViewWidthDp(140)
-                                                            .withViewHeightDp(180)
+                                                            .withViewWidthDp(120)
+                                                            .withViewHeightDp(160)
                                                             .build();
         mFanLayoutManager = new FanLayoutManager(getContext(), fanLayoutManagerSettings);
         mRecyclerView.setLayoutManager(mFanLayoutManager);
@@ -88,6 +90,10 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
         mRecyclerView.setAdapter(mDrinksAdapter);
         mRecyclerView.setHasFixedSize(true);
         //mRecyclerView.setChildDrawingOrderCallback(new FanChildDrawingOrderCallback(mFanLayoutManager));
+
+        //Other ui
+        mStartButton = (Button) mBinding.getRoot().findViewById(R.id.start_button);
+        mStartButton.setOnClickListener(this);
 
         return mBinding.getRoot();
     }
@@ -105,10 +111,7 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
             mFanLayoutManager.switchItem(mRecyclerView, pos);
         } else {
             //Use fragment manager, instead of a new activity
-            /*Intent drinkDetailsIntent = new Intent(getActivity(), DrinkDetailActivity.class);
-            drinkDetailsIntent.putExtra(Drink.KEY_ID, ((DrinkRecyclerViewAdapter)mRecyclerView.getAdapter()).getItem(mFanLayoutManager.getSelectedItemPosition()).getId());
-            getActivity().startActivity(drinkDetailsIntent);*/
-            ((DrinkDetailsNavigation)getActivity()).OnShowDrinkDetails(((DrinkRecyclerViewAdapter)mRecyclerView.getAdapter()).getItem(mFanLayoutManager.getSelectedItemPosition()).getId(),
+            ((DrinkControlNavigation)getActivity()).OnShowDrinkDetails(((DrinkRecyclerViewAdapter)mRecyclerView.getAdapter()).getItem(mFanLayoutManager.getSelectedItemPosition()).getId(),
                     mBinding.topPanel,
                     mBinding.mainBackground);
         }
@@ -120,6 +123,19 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
             return true;
         } else {
             return false;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.start_button:{
+                if(getActivity() != null &&
+                        !getActivity().isFinishing()){
+                    ((DrinkControlNavigation)getActivity()).OnStartDrinkMaking(mStartButton);
+                }
+                break;
+            }
         }
     }
 }

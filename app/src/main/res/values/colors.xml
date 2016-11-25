@@ -32,6 +32,11 @@
     <!-- Drinks Details -->
     <color name="drinks_detail_card_background">#FFFFFF</color>
 
+    <!-- Drinks Maker -->
+    <color name="wave_behind_color">#885D4037</color>
+    <color name="wave_front_color">#225D4037</color>
+    <color name="drinks_maker_card_background">#FFFFFF</color>
+
     <!-- Common -->
     <color name="button_ripple">#FFCC80</color>
 

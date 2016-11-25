@@ -29,8 +29,9 @@
 
         <!-- Ensure scrollable -->
         <ScrollView
+            android:id="@+id/intro_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:fillViewport="true">
 
@@ -87,6 +88,7 @@
                         android:layout_marginLeft="@dimen/dashboard_button_margin_side"
                         android:layout_marginRight="@dimen/dashboard_button_margin_side"
                         android:text="@string/dashboard_start_button"
+                        tools:text="@string/dashboard_start_button"
                         android:textAlignment="center"
                         android:background="@drawable/ripple"/>
 
@@ -101,6 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_below="@+id/intro_container"
             tools:listitem="@layout/recyclerview_item_drink"
             />
 
@@ -114,6 +117,7 @@
             android:layout_marginBottom="@dimen/dashboard_info_margin_bottom"
             android:layout_alignParentBottom="true"
             android:text="Classic Selections"/>
+
 
     </RelativeLayout>
 
