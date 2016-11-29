@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import com.tinytinybites.android.kopiaddict.R;
 import com.tinytinybites.android.kopiaddict.activity.DrinkControlNavigation;
 import com.tinytinybites.android.kopiaddict.application.EApplication;
@@ -28,13 +27,11 @@ import com.tinytinybites.android.kopiaddict.dao.DrinkDao;
 import com.tinytinybites.android.kopiaddict.databinding.FragmentDrinkDetailBinding;
 import com.tinytinybites.android.kopiaddict.model.Drink;
 import io.realm.Realm;
+import io.realm.RealmObject;
 import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func0;
 import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by bundee on 11/9/16.
@@ -51,6 +48,7 @@ public class DrinkDetailFragment extends Fragment implements View.OnClickListene
     private LinearLayout mIngredientLinearLayout;
     private ImageView mCloseButton;
     private Subscription mSubscription;
+    private Realm mRealm;
 
     /**
      * Static constructor
@@ -75,13 +73,6 @@ public class DrinkDetailFragment extends Fragment implements View.OnClickListene
         setRetainInstance(true);
 
         Bundle arguments = getArguments();
-        /*if(savedInstanceState != null &&
-                savedInstanceState.containsKey(Drink.KEY_ID)){
-
-            //mDashboardViewModel = Parcels.unwrap(savedInstanceState.getParcelable(BundleUtil.VM_DASHBOARD));
-        }else if(arguments != null){
-
-        }*/
         mDrinkId = arguments.getString(Drink.KEY_ID);
     }
 
@@ -91,13 +82,67 @@ public class DrinkDetailFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
+    public void onStart(){
+        super.onStart();
+
+        mRealm = Realm.getDefaultInstance();
+
+        //From a list of observable Views, break it down to individual observable and subscribe to that
+        mSubscription = mRealm.where(Drink.class).equalTo(Drink.KEY_ID, mDrinkId).findFirstAsync().asObservable()
+                .filter(new Func1<RealmObject, Boolean>() {
+                    @Override
+                    public Boolean call(RealmObject realmObject) {
+                        return realmObject.isLoaded();
+                    }
+                })
+                .map(new Func1<RealmObject, List<View>>() {
+                    @Override
+                    public List<View> call(RealmObject realmObject) {
+                        return getDrinkCompositionViews((Drink) realmObject);
+                    }
+                })
+                .flatMap(new Func1<List<View>, Observable<View>>() {
+                    @Override
+                    public Observable<View> call(List<View> views) {
+                        return Observable.from(views);
+                    }
+                })
+                .subscribe(new Subscriber<View>() {
+                    @Override
+                    public void onCompleted() {
+                        Log.e(TAG, "On Completed!");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, "On Error : " + e.toString());
+                    }
+
+                    @Override
+                    public void onNext(View view) {
+                        mIngredientLinearLayout.addView(view);
+
+                        Animation animation = AnimationUtils.loadAnimation(EApplication.getInstance(), R.anim.enter_from_bottom);
+                        animation.setStartOffset(0);
+                        view.startAnimation(animation);
+                    }
+                });
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
     }
 
     @Override
+    public void onStop(){
+        super.onStop();
+
+        mRealm.close();
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
-        //outState.putParcelable(BundleUtil.VM_DASHBOARD, Parcels.wrap(mDashboardViewModel));
         super.onSaveInstanceState(outState);
     }
 
@@ -122,38 +167,6 @@ public class DrinkDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        //From a list of observable Views, break it down to individual observable and subscribe to that
-        mSubscription = getDrinkIngredientViewsObservable()
-                .flatMap(new Func1<List<View>, Observable<View>>() {
-                    @Override
-                    public Observable<View> call(List<View> views) {
-                        return Observable.from(views);
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<View>() {
-                    @Override
-                    public void onCompleted() {
-                        Log.e(TAG, "On Completed!");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e(TAG, "On Error : " + e.toString());
-                    }
-
-                    @Override
-                    public void onNext(View view) {
-                        Log.e(TAG, "On Next : ");
-                        mIngredientLinearLayout.addView(view);
-
-                        Animation animation = AnimationUtils.loadAnimation(EApplication.getInstance(), R.anim.enter_from_bottom);
-                        animation.setStartOffset(0);
-                        view.startAnimation(animation);
-                    }
-                });
     }
 
     @Override
@@ -172,10 +185,8 @@ public class DrinkDetailFragment extends Fragment implements View.OnClickListene
      * Get a list of composition views based on a given drink
      * @return
      */
-    private List<View> getDrinkCompositionViews(){
+    private List<View> getDrinkCompositionViews(Drink drink){
         ArrayList<View> compositionViews = new ArrayList<>();
-
-        Drink drink = DrinkDao.getInstance().loadDrink(Realm.getDefaultInstance(), mDrinkId);
 
         //Get all required components
         int waterLevel = drink.getWaterCompositionWeight();
@@ -255,22 +266,6 @@ public class DrinkDetailFragment extends Fragment implements View.OnClickListene
         return compositionViews;
     }
 
-    /**
-     * Take the list of composition drink views and make it an observable list
-     * @return
-     */
-    private Observable<List<View>> getDrinkIngredientViewsObservable(){
-        return Observable.defer(new Func0<Observable<List<View>>>() {
-            @Override
-            public Observable<List<View>> call() {
-                try {
-                    return Observable.just(getDrinkCompositionViews());
-                }catch (Exception e){
-                    return Observable.error(e);
-                }
-            }
-        }).delay(400, TimeUnit.MILLISECONDS);
-    }
     /**
      * Inflate and setup a view that corresponds to a drink component, with proper weight for layout and content
      * @param layoutInflater

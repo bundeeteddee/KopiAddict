@@ -2,6 +2,7 @@ package com.tinytinybites.android.kopiaddict.activity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -99,7 +100,8 @@ public class MainActivity extends AppCompatActivity implements DrinkControlNavig
 
     @Override
     public void OnBackPressed() {
-        getSupportFragmentManager().popBackStackImmediate();
+        //This is only called by drink details for now, therefore it will always pop everything to the first item
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.tinytinybites.android.kopiaddict.fragment;
 
 import android.databinding.DataBindingUtil;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,7 +17,6 @@ import com.cleveroad.fanlayoutmanager.FanLayoutManagerSettings;
 import com.tinytinybites.android.kopiaddict.R;
 import com.tinytinybites.android.kopiaddict.activity.DrinkControlNavigation;
 import com.tinytinybites.android.kopiaddict.adapter.DrinkRecyclerViewAdapter;
-import com.tinytinybites.android.kopiaddict.application.EApplication;
 import com.tinytinybites.android.kopiaddict.common.BundleUtil;
 import com.tinytinybites.android.kopiaddict.dao.DrinkDao;
 import com.tinytinybites.android.kopiaddict.databinding.FragmentDashboardBinding;
@@ -70,8 +68,8 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
         //Apply quick dirty way for custom font for header
         //Ref: https://futurestud.io/tutorials/custom-fonts-on-android-quick-and-dirty
         mHeaderTextView = (TextView) mBinding.getRoot().findViewById(R.id.header);
-        Typeface typeface = Typeface.createFromAsset(EApplication.getInstance().getAssets(),"angelina.TTF");
-        mHeaderTextView.setTypeface(typeface);
+        /*Typeface typeface = Typeface.createFromAsset(EApplication.getInstance().getAssets(),"angelina.TTF");
+        mHeaderTextView.setTypeface(typeface);*/
 
         //Customize fan layout and setup recycler view
         mRecyclerView = (RecyclerView) mBinding.getRoot().findViewById(R.id.recycler_view);
@@ -79,8 +77,8 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
                                                             .newBuilder(getContext())
                                                             .withFanRadius(true)
                                                             .withAngleItemBounce(8)
-                                                            .withViewWidthDp(120)
-                                                            .withViewHeightDp(160)
+                                                            .withViewWidthDp(getResources().getDimension(R.dimen.fanout_card_width))
+                                                            .withViewHeightDp(getResources().getDimension(R.dimen.fanout_card_height))
                                                             .build();
         mFanLayoutManager = new FanLayoutManager(getContext(), fanLayoutManagerSettings);
         mRecyclerView.setLayoutManager(mFanLayoutManager);

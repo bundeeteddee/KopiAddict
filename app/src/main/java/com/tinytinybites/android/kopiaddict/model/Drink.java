@@ -36,6 +36,7 @@ public class Drink extends RealmObject{
     private ConcentrationLevel concentrationLevel;
     @Index private boolean iced;
     @Index private boolean prepopulated;
+    @Index private boolean takeAway;
     private String note;
 
     @Ignore
@@ -55,19 +56,22 @@ public class Drink extends RealmObject{
      * @param concentrationLevel
      * @param iced
      * @param prepopulated
+     * @param takeAway
      */
     public Drink(Flavor flavor,
                  RealmList<Sweetener> sweeteners,
                  SweetenerLevel sweetenerLevel,
                  ConcentrationLevel concentrationLevel,
                  boolean iced,
-                 boolean prepopulated){
+                 boolean prepopulated,
+                 boolean takeAway){
         this.flavor = flavor;
         this.sweeteners = sweeteners;
         this.sweetenerLevel = sweetenerLevel;
         this.concentrationLevel = concentrationLevel;
         this.iced = iced;
         this.prepopulated = prepopulated;
+        this.takeAway = takeAway;
     }
 
     public ConcentrationLevel getConcentrationLevel() {
@@ -98,6 +102,8 @@ public class Drink extends RealmObject{
         return iced;
     }
 
+    public boolean isTakeAway(){    return takeAway;}
+
     public String getNote(){
         return note;
     }
@@ -108,6 +114,34 @@ public class Drink extends RealmObject{
 
     public void setColorResId(@ColorRes int colorResId){
         this.colorResId = colorResId;
+    }
+
+    public void setConcentrationLevel(ConcentrationLevel concentrationLevel) {
+        this.concentrationLevel = concentrationLevel;
+    }
+
+    public void setFlavor(Flavor flavor) {
+        this.flavor = flavor;
+    }
+
+    public void setIced(boolean iced) {
+        this.iced = iced;
+    }
+
+    public void setTakeAway(boolean takeAway){
+        this.takeAway = takeAway;
+    }
+
+    public void setKeyPrepopulated(boolean keyPrepopulated){
+        this.prepopulated = keyPrepopulated;
+    }
+
+    public void setSweetenerLevel(SweetenerLevel sweetenerLevel) {
+        this.sweetenerLevel = sweetenerLevel;
+    }
+
+    public void setSweeteners(RealmList<Sweetener> sweeteners) {
+        this.sweeteners = sweeteners;
     }
 
     /**
@@ -178,6 +212,12 @@ public class Drink extends RealmObject{
             builder.append(EApplication.getInstance().getString(R.string.drink_combo_iced));
         }
 
+        //Check for take away
+        if(isTakeAway()){
+            builder.append(" ");
+            builder.append(EApplication.getInstance().getString(R.string.drink_take_away_local));
+        }
+
         return builder.toString();
     }
 
@@ -195,7 +235,7 @@ public class Drink extends RealmObject{
             builder.append("This is a hot ");
         }
         builder.append(getFlavor().getFriendlyDescription());
-        builder.append(" drink ");
+        builder.append(" drink");
 
         //Sweeteners
         if(getSweeteners().isEmpty()){
@@ -262,6 +302,11 @@ public class Drink extends RealmObject{
             builder.append(" The drink is more concentrated than normal.");
         }else if(getConcentrationLevel().isWeaker()){
             builder.append(" The drink is less concentrated than normal.");
+        }
+
+        //Takeaway
+        if(isTakeAway()){
+            builder.append(" Ready for take away.");
         }
 
         return builder.toString();

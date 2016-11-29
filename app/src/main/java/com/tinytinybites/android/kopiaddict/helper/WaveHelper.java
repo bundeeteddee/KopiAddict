@@ -21,6 +21,11 @@ public class WaveHelper {
     //Tag
     protected static final String TAG = WaveHelper.class.getSimpleName();
 
+    //Static
+    private static final long AMPLITUDE_ANIMATION_DURATION = 3000;
+    private static final long WATER_LEVEL_ANIMATION_DURATION = 3000;
+    private static final long WATER_SHIFT_ANIMATION_DURATION = 1000;
+
     //Variables
     private WaveView mWaveView;
     private AnimatorSet mAnimatorSet;
@@ -46,10 +51,9 @@ public class WaveHelper {
 
         // horizontal animation.
         // wave waves infinitely.
-        ObjectAnimator waveShiftAnim = ObjectAnimator.ofFloat(
-                mWaveView, "waveShiftRatio", 0f, 1f);
+        ObjectAnimator waveShiftAnim = ObjectAnimator.ofFloat(mWaveView, "waveShiftRatio", 0f, 1f);
         waveShiftAnim.setRepeatCount(ValueAnimator.INFINITE);
-        waveShiftAnim.setDuration(1000);
+        waveShiftAnim.setDuration(WATER_SHIFT_ANIMATION_DURATION);
         waveShiftAnim.setInterpolator(new LinearInterpolator());
         animators.add(waveShiftAnim);
 
@@ -57,7 +61,7 @@ public class WaveHelper {
         // water level starts from the very bottom
         mWaterLevelAnim = ObjectAnimator.ofFloat(mWaveView, "waterLevelRatio", 0, mWaveLevel);
         mWaterLevelAnim.setAutoCancel(true);
-        mWaterLevelAnim.setDuration(5000);
+        mWaterLevelAnim.setDuration(WATER_LEVEL_ANIMATION_DURATION);
         mWaterLevelAnim.setInterpolator(new DecelerateInterpolator());
         animators.add(mWaterLevelAnim);
 
@@ -66,7 +70,7 @@ public class WaveHelper {
         mAmplitudeAnim = ObjectAnimator.ofFloat(mWaveView, "amplitudeRatio", 0.0001f, 0.03f);
         mAmplitudeAnim.setRepeatCount(1);
         mAmplitudeAnim.setRepeatMode(ValueAnimator.REVERSE);
-        mAmplitudeAnim.setDuration(5000);
+        mAmplitudeAnim.setDuration(AMPLITUDE_ANIMATION_DURATION);
         mAmplitudeAnim.setInterpolator(new LinearInterpolator());
 
         animators.add(mAmplitudeAnim);
@@ -107,9 +111,9 @@ public class WaveHelper {
                 long elapsedTime = mAmplitudeAnim.getCurrentPlayTime();
 
                 //Compensate duration, so animation is smoother
-                if(elapsedTime > 2500){
+                if(elapsedTime > (AMPLITUDE_ANIMATION_DURATION/2)){
                     //Flip the curve
-                    mAmplitudeAnim.setCurrentPlayTime(elapsedTime - (elapsedTime-2500));
+                    mAmplitudeAnim.setCurrentPlayTime(elapsedTime - (elapsedTime-(AMPLITUDE_ANIMATION_DURATION/2)));
                 }else{
                     //Do nothing, let it keep going
                 }

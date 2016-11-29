@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="drink"
-            type="com.tinytinybites.android.kopiaddict.model.Drink"/>
+            name="drinkMakerViewModel"
+            type="com.tinytinybites.android.kopiaddict.viewmodel.DrinkMakerViewModel"/>
     </data>
 
     <RelativeLayout
@@ -29,50 +29,59 @@
             android:layout_centerInParent="true"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp"
-            android:background="@color/drinks_maker_card_background">
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="80dp"
+            app:cardBackgroundColor="@color/drinks_maker_card_background"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
 
             <LinearLayout
                 android:id="@+id/drink_maker_question_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="300dp"
                 android:orientation="vertical"
                 android:padding="20dp"
-                android:gravity="center_horizontal">
+                android:gravity="center"
+                android:layout_gravity="center">
 
                 <ImageView
                     android:id="@+id/question_image"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
+                    android:src="@{drinkMakerViewModel.questionImage}"
+                    android:layout_marginBottom="20dp"
                     tools:src="@drawable/img_composition_evaporated_milk"
+                    android:visibility="gone"
                     />
 
                 <TextView
+                    style="@style/DrinkMaker.Question"
                     android:id="@+id/question"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    tools:text="Would you like Tea, Coffee or Tea + Coffee?"/>
+                    android:text="@{drinkMakerViewModel.question}"
+                    tools:text="@string/drink_q1"/>
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleSmall"
+                    android:id="@+id/loading"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="@{drinkMakerViewModel.progressVisibility}"
+                    />
 
                 <LinearLayout
                     android:id="@+id/drink_maker_choice_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal">
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="Yes"/>
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        tools:text="No"/>
-
-                </LinearLayout>
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:animateLayoutChanges="true"/>
 
             </LinearLayout>
 

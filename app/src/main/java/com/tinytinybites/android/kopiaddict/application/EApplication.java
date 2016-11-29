@@ -27,6 +27,8 @@ public class EApplication extends Application{
         initDatabaseEngine();
 
         //Check whether database is initialized. If not, pre-populate required objects
+        //TODO: Proper RealmMigration structure has changed
+        //TODO: Have db initialization in separate thread
         checkDatabase();
     }
 

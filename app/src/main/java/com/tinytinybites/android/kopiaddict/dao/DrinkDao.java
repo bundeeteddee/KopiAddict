@@ -100,16 +100,12 @@ public class DrinkDao implements Dao{
      * @return
      */
     public Drink loadDrink(String id){
-        Log.e(TAG, "loadDrink >> " + id);
         Drink result =  mRealm.where(Drink.class).equalTo(Drink.KEY_ID, id).findFirst();
-        Log.e(TAG, "loadDrink result: " + result);
         return result;
     }
 
     public Drink loadDrink(Realm realm, String id){
-        Log.e(TAG, "loadDrink >> " + id);
         Drink result =  realm.where(Drink.class).equalTo(Drink.KEY_ID, id).findFirst();
-        Log.e(TAG, "loadDrink result: " + result);
         return result;
     }
 
@@ -168,7 +164,7 @@ public class DrinkDao implements Dao{
         SweetenerLevel sweetenerLevel = new SweetenerLevel(SweetenerLevel.TYPE_100);
         ConcentrationLevel concentrationLevel = new ConcentrationLevel(ConcentrationLevel.TYPE_NORMAL);
 
-        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, false, true);
+        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, false, true, false);
     }
 
     /**
@@ -181,7 +177,7 @@ public class DrinkDao implements Dao{
         SweetenerLevel sweetenerLevel = new SweetenerLevel(SweetenerLevel.TYPE_100);
         ConcentrationLevel concentrationLevel = new ConcentrationLevel(ConcentrationLevel.TYPE_NORMAL);
 
-        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, false, true);
+        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, false, true, false);
     }
 
     /**
@@ -194,7 +190,7 @@ public class DrinkDao implements Dao{
         SweetenerLevel sweetenerLevel = new SweetenerLevel(SweetenerLevel.TYPE_100);
         ConcentrationLevel concentrationLevel = new ConcentrationLevel(ConcentrationLevel.TYPE_NORMAL);
 
-        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, false, true);
+        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, false, true, false);
     }
 
     /**
@@ -207,7 +203,7 @@ public class DrinkDao implements Dao{
         SweetenerLevel sweetenerLevel = new SweetenerLevel(SweetenerLevel.TYPE_50);
         ConcentrationLevel concentrationLevel = new ConcentrationLevel(ConcentrationLevel.TYPE_NORMAL);
 
-        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, false, true);
+        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, false, true, false);
     }
 
     /**
@@ -220,7 +216,7 @@ public class DrinkDao implements Dao{
         SweetenerLevel sweetenerLevel = new SweetenerLevel(SweetenerLevel.TYPE_100);
         ConcentrationLevel concentrationLevel = new ConcentrationLevel(ConcentrationLevel.TYPE_NORMAL);
 
-        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, true, true);
+        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, true, true, false);
     }
 
     /**
@@ -233,7 +229,7 @@ public class DrinkDao implements Dao{
         SweetenerLevel sweetenerLevel = new SweetenerLevel(SweetenerLevel.TYPE_150);
         ConcentrationLevel concentrationLevel = new ConcentrationLevel(ConcentrationLevel.TYPE_STRONGER);
 
-        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, false, true);
+        return new Drink(flavor, sweeteners, sweetenerLevel, concentrationLevel, false, true, false);
     }
 
     @Override

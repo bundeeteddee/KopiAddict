@@ -101,7 +101,10 @@ public class Flavor extends RealmObject{
     public boolean isKopi(){    return getId() == TYPE_KOPI;}
     public boolean isTeh(){    return getId() == TYPE_TEH;}
 
-
+    /**
+     * Get friendly description of the flavor
+     * @return
+     */
     public String getFriendlyDescription(){
         if(isYuanYang()){
             return "half-coffee and half-tea";

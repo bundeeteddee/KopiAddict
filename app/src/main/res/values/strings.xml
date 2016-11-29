@@ -4,6 +4,7 @@
 
     <!-- Common -->
     <string name="close">Close</string>
+    <string name="boiling_water">Boiling water...</string>
 
     <!-- Transition Items -->
     <string name="transition_top_panel" translatable="false">transition_top_panel</string>
@@ -34,8 +35,35 @@
     <string name="drink_combo_o">O</string>
     <string name="drink_combo_c">C</string>
     <string name="drink_combo_iced">Peng</string>
+    <string name="drink_take_away_local">Ta Pao</string>
     <string name="dashboard_start_button">Tap Here To Start</string>
 
     <!-- Additional Drinks composition-->
     <string name="drink_composition_water">Water</string>
+
+    <!-- Drinks Making -->
+    <string name="drink_q_yes">Yes</string>
+    <string name="drink_q_no">No</string>
+    <string name="drink_q1">What would you like today?</string>
+    <string name="drink_q1_a1">Tea</string>
+    <string name="drink_q1_a2">Coffee</string>
+    <string name="drink_q1_a3">Both!</string>
+    <string name="drink_q2">Add Evaporated Milk?</string>
+    <string name="drink_q3">Add Condensed Milk?</string>
+    <string name="drink_q4">Preferred Sweetness Level (100% is normal)</string>
+    <string name="drink_q4_a1" formatted="false">0%</string>
+    <string name="drink_q4_a2" formatted="false">25%</string>
+    <string name="drink_q4_a3" formatted="false">50%</string>
+    <string name="drink_q4_a4" formatted="false">100%</string>
+    <string name="drink_q4_a5" formatted="false">150%</string>
+    <string name="drink_q5">Preferred Concentration Level</string>
+    <string name="drink_q5_a1">Weaker</string>
+    <string name="drink_q5_a2">Normal</string>
+    <string name="drink_q5_a3">Stronger</string>
+    <string name="drink_q6">Will this drink be ...</string>
+    <string name="drink_q6_a1">Iced</string>
+    <string name="drink_q6_a2">Hot</string>
+    <string name="drink_q7">Takeaway?</string>
+
+
 </resources>
