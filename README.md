@@ -22,5 +22,6 @@ A fun experimental project that shows you how to order tea or coffee the local w
 First version with 3 main elements: dashboard, drinks maker and drinks details.
 
 # Screen Shots
+![Screenshot](demo.gif)
 
 
