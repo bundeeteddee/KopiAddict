@@ -7,6 +7,7 @@ A fun experimental project that shows you how to order tea or coffee the local w
 
 # What is it made of?
 * [Android Data Binding Library](https://developer.android.com/topic/libraries/data-binding/index.html) Binding of xml elements, auto-update on data change
+* [Realm Database](https://realm.io) Fully open source client side database
 * [MVVM Framework](https://en.wikipedia.org/wiki/Model–view–viewmodel) Works quite well with data binding library.
 * [FanLayout Manager](https://github.com/Cleveroad/FanLayoutManager) A beautiful UI library that provides a horizontal list with fan-out blade style
 * [RxJava](https://github.com/ReactiveX/RxJava) Reactive extensions for JVM - a library for composing asynchronous and event-based programs using observable sequences for the Java VM.
@@ -20,6 +21,11 @@ A fun experimental project that shows you how to order tea or coffee the local w
 # Updates
 ## v1.0
 First version with 3 main elements: dashboard, drinks maker and drinks details.
+
+# Todo
+* Polishing: Custom fonts, Update fanout list item, more animations, drink details layout
+* Feature: allow user to remove drink from fanout
+* Tweak: Improve startup time and performance, better way to pre-populate database
 
 # Screen Shots
 ![Screenshot](demo.gif)
