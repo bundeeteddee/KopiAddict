@@ -87,7 +87,6 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
 
         mRecyclerView.setAdapter(mDrinksAdapter);
         mRecyclerView.setHasFixedSize(true);
-        //mRecyclerView.setChildDrawingOrderCallback(new FanChildDrawingOrderCallback(mFanLayoutManager));
 
         //Other ui
         mStartButton = (Button) mBinding.getRoot().findViewById(R.id.start_button);

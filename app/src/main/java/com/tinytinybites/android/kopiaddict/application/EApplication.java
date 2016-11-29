@@ -64,28 +64,8 @@ public class EApplication extends Application{
     private void checkDatabase(){
         Log.e(TAG, "checkDatabase 1 :" + DrinkDao.getInstance().getCount());
         if(DrinkDao.getInstance().getCount() == 0){
-
             DrinkDao.getInstance().prepopulateDrinks();
         }
-
-        /*Log.e(TAG, "checkDatabase 3 : " + DrinkDao.getInstance().getCount());
-        RealmResults<Drink> prepopulatedDrinks = mRealm.where(Drink.class).findAllAsync();
-        Log.e(TAG, ">>>> mmmm " + prepopulatedDrinks.size());
-
-        Log.e(TAG, "checkDatabase 4");
-        prepopulatedDrinks.addChangeListener(new RealmChangeListener<RealmResults<Drink>>() {
-            @Override
-            public void onChange(RealmResults<Drink> element) {
-                if(element.size() == 0){
-                    Log.e(TAG, ">>>> We got nothing :( ");
-
-                }else{
-                    Log.e(TAG, ">>>> We prepopulated stuff: " + element.size());
-
-                }
-            }
-        });*/
     }
-
 
 }
