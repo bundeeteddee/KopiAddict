@@ -28,6 +28,8 @@ First version with 3 main elements: dashboard, drinks maker and drinks details.
 * Tweak: Improve startup time and performance, better way to pre-populate database
 * Build and deploy to Google Playstore
 * Add Crashlytics
+* More testing on different screen sizes
+* Write unit tests
 
 # Screen Shots
 ![Screenshot](demo.gif)
