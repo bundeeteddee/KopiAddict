@@ -47,6 +47,6 @@
 
     <!-- Drink maker-->
     <dimen name="drink_maker_answer_button_margin_side">5dp</dimen>
-    <dimen name="drink_maker_answer_button_margin_top_bottom">5dp</dimen>
+    <dimen name="drink_maker_answer_button_margin_top_bottom">2dp</dimen>
 
 </resources>
