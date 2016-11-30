@@ -26,6 +26,8 @@ First version with 3 main elements: dashboard, drinks maker and drinks details.
 * Polishing: Custom fonts, Update fanout list item, more animations, drink details layout
 * Feature: allow user to remove drink from fanout
 * Tweak: Improve startup time and performance, better way to pre-populate database
+* Build and deploy to Google Playstore
+* Add Crashlytics
 
 # Screen Shots
 ![Screenshot](demo.gif)
