@@ -19,6 +19,8 @@ A fun experimental project that shows you how to order tea or coffee the local w
 * The usual material support library from Google
 
 # Updates
+## v1.1
+Custom slanted view, added proper fragment transitions with shared elements
 ## v1.0
 First version with 3 main elements: dashboard, drinks maker and drinks details.
 
