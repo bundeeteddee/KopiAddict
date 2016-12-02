@@ -14,13 +14,13 @@
         android:id="@+id/main_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_bg_pattern"
-        android:transitionName="@string/transition_background">
+        android:background="@drawable/app_bg_pattern">
 
         <com.tinytinybites.android.kopiaddict.view.WaveView
             android:id="@+id/wave"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:transitionName="@string/transition_top_panel" />
 
         <android.support.v7.widget.CardView
             android:id="@+id/drink_maker_question_card"

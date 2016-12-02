@@ -8,8 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import org.parceler.Parcels;
 import com.cleveroad.fanlayoutmanager.FanLayoutManager;
@@ -36,8 +34,15 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
     private DrinkRecyclerViewAdapter mDrinksAdapter;
     private DashboardViewModel mDashboardViewModel;
     private RecyclerView mRecyclerView;
-    private TextView mHeaderTextView;
-    private Button mStartButton;
+
+    /**
+     * Static constructor
+     * @return
+     */
+    public static DashboardFragment newInstance(){
+        DashboardFragment fragment = new DashboardFragment();
+        return fragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,7 +72,6 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
 
         //Apply quick dirty way for custom font for header
         //Ref: https://futurestud.io/tutorials/custom-fonts-on-android-quick-and-dirty
-        mHeaderTextView = (TextView) mBinding.getRoot().findViewById(R.id.header);
         /*Typeface typeface = Typeface.createFromAsset(EApplication.getInstance().getAssets(),"angelina.TTF");
         mHeaderTextView.setTypeface(typeface);*/
 
@@ -89,8 +93,7 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
         mRecyclerView.setHasFixedSize(true);
 
         //Other ui
-        mStartButton = (Button) mBinding.getRoot().findViewById(R.id.start_button);
-        mStartButton.setOnClickListener(this);
+        mBinding.startButton.setOnClickListener(this);
 
         return mBinding.getRoot();
     }
@@ -108,9 +111,8 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
             mFanLayoutManager.switchItem(mRecyclerView, pos);
         } else {
             //Use fragment manager, instead of a new activity
-            ((DrinkControlNavigation)getActivity()).OnShowDrinkDetails(((DrinkRecyclerViewAdapter)mRecyclerView.getAdapter()).getItem(mFanLayoutManager.getSelectedItemPosition()).getId(),
-                    mBinding.topPanel,
-                    mBinding.mainBackground);
+            ((DrinkControlNavigation)getActivity()).OnShowDrinkDetails(this, ((DrinkRecyclerViewAdapter)mRecyclerView.getAdapter()).getItem(mFanLayoutManager.getSelectedItemPosition()).getId(),
+                    mBinding.topPanel);
         }
     }
 
@@ -129,7 +131,7 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
             case R.id.start_button:{
                 if(getActivity() != null &&
                         !getActivity().isFinishing()){
-                    ((DrinkControlNavigation)getActivity()).OnStartDrinkMaking(mStartButton);
+                    ((DrinkControlNavigation)getActivity()).OnStartDrinkMaking(DashboardFragment.this, mBinding.startButton);
                 }
                 break;
             }

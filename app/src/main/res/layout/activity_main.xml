@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <fragment android:id="@+id/fragment"
-              android:name="com.tinytinybites.android.kopiaddict.fragment.DashboardFragment"
+    <FrameLayout android:id="@+id/fragment"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               tools:layout="@layout/fragment_dashboard"/>

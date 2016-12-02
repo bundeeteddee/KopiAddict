@@ -1,5 +1,6 @@
 package com.tinytinybites.android.kopiaddict.activity;
 
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 /**
@@ -8,8 +9,8 @@ import android.view.View;
 
 public interface DrinkControlNavigation {
 
-    void OnShowDrinkDetails(String drinkId, View topPanel, View background);
-    void OnStartDrinkMaking(View background);
+    void OnShowDrinkDetails(Fragment originFragment, String drinkId, View topPanel);
+    void OnStartDrinkMaking(Fragment originFragment, View topPanel);
     void OnBackPressed();
 
 }

@@ -5,7 +5,7 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!-- Dashboard -->
-    <dimen name="toolbar_extra_view">160dp</dimen>
+    <dimen name="toolbar_extra_view">190dp</dimen>
     <dimen name="dashboard_logo_margin">8dp</dimen>
     <dimen name="dashboard_start_block_padding">15dp</dimen>
     <dimen name="dashboard_cup_size">220dp</dimen>

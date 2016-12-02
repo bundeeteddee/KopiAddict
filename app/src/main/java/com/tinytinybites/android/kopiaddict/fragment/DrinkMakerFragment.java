@@ -290,9 +290,7 @@ public class DrinkMakerFragment extends Fragment implements View.OnClickListener
                 public void onSuccess() {
                     Log.e(TAG, "onSuccess >>> "+ mDrinkMakerViewModel.getDrink().getId());
                     //Move to details ui
-                    ((DrinkControlNavigation)getActivity()).OnShowDrinkDetails(mDrinkMakerViewModel.getDrink().getId(),
-                            null,
-                            mBinding.mainBackground);
+                    ((DrinkControlNavigation)getActivity()).OnShowDrinkDetails(DrinkMakerFragment.this, mDrinkMakerViewModel.getDrink().getId(), null);
                 }
             }, new Realm.Transaction.OnError() {
                 @Override
