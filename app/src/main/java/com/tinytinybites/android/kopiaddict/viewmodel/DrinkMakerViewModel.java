@@ -3,6 +3,7 @@ package com.tinytinybites.android.kopiaddict.viewmodel;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import com.android.databinding.library.baseAdapters.BR;
@@ -79,13 +80,17 @@ public class DrinkMakerViewModel extends BaseObservable implements ViewModel{
 
     @Bindable
     public Drawable getQuestionImage(){
+        int drawable = R.drawable.img_composition_condensed_milk;
+
         switch (mStage){
             case MAKE_STAGE_1:{
-                return EApplication.getInstance().getDrawable(R.drawable.img_composition_gula_melaka);
+                drawable = R.drawable.img_composition_gula_melaka;
+                break;
             }
-            default:
-                return EApplication.getInstance().getDrawable(R.drawable.img_composition_condensed_milk);
         }
+
+        //Use ContextCompat for backward compatibility reason as getDrawable from context itself is only from lollipop onwards
+        return ContextCompat.getDrawable(EApplication.getInstance(), drawable);
     }
 
     @Bindable

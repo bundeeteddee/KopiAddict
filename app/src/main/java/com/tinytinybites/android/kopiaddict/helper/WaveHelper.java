@@ -72,7 +72,6 @@ public class WaveHelper {
         mAmplitudeAnim.setRepeatMode(ValueAnimator.REVERSE);
         mAmplitudeAnim.setDuration(AMPLITUDE_ANIMATION_DURATION);
         mAmplitudeAnim.setInterpolator(new LinearInterpolator());
-
         animators.add(mAmplitudeAnim);
 
         mAnimatorSet = new AnimatorSet();

@@ -30,9 +30,6 @@ public class SlantedView extends View {
     private static final int MODE_SLANT_DOWN_FILL_BOTTOM = 3;
     private static final int MODE_SLANT_UP_FILL_BOTTOM = 4;
 
-    //Defaults
-    //private static final int DEFAULT_BACKGROUND =
-
     //Variables
     private Paint mPaint;
     private Path mPath;
@@ -108,8 +105,6 @@ public class SlantedView extends View {
 
         //Ref: http://stackoverflow.com/a/3723654/377844
         setLayerType(LAYER_TYPE_SOFTWARE, mPaint);
-
-
 
     }
 

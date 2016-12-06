@@ -57,15 +57,15 @@ public class MainActivity extends AppCompatActivity implements DrinkControlNavig
             fragment.setSharedElementReturnTransition(TransitionInflater.from(this).inflateTransition(android.R.transition.move));
             fragment.setEnterTransition(TransitionInflater.from(this).inflateTransition(android.R.transition.slide_top));
 
-            //Add to fragment manager and add to back stack, retain backstack state
-            ft.replace(R.id.fragment, fragment, DrinkDetailFragment.class.getName());
-            ft.addToBackStack(DrinkDetailFragment.class.getName());
-
             if(topPanel != null) {
                 ViewCompat.setTransitionName(topPanel, getString(R.string.transition_top_panel));
                 ft.addSharedElement(topPanel, getString(R.string.transition_top_panel));
             }
         }
+
+        //Add to fragment manager and add to back stack, retain backstack state
+        ft.replace(R.id.fragment, fragment, DrinkDetailFragment.class.getName());
+        ft.addToBackStack(DrinkDetailFragment.class.getName());
 
         ft.commit();
     }
@@ -91,15 +91,15 @@ public class MainActivity extends AppCompatActivity implements DrinkControlNavig
             fragment.setSharedElementReturnTransition(TransitionInflater.from(this).inflateTransition(android.R.transition.move));
             fragment.setEnterTransition(TransitionInflater.from(this).inflateTransition(android.R.transition.slide_top));
 
-            //Add to fragment manager and add to back stack, retain backstack state
-            ft.replace(R.id.fragment, fragment, DrinkMakerFragment.class.getName());
-            ft.addToBackStack(DrinkMakerFragment.class.getName());
-
             if(topPanel != null) {
                 ViewCompat.setTransitionName(topPanel, getString(R.string.transition_top_panel));
                 ft.addSharedElement(topPanel, getString(R.string.transition_top_panel));
             }
         }
+
+        //Add to fragment manager and add to back stack, retain backstack state
+        ft.replace(R.id.fragment, fragment, DrinkMakerFragment.class.getName());
+        ft.addToBackStack(DrinkMakerFragment.class.getName());
 
         ft.commit();
     }

@@ -1,10 +1,8 @@
 package com.tinytinybites.android.kopiaddict.fragment;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +31,6 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
     private FanLayoutManager mFanLayoutManager;
     private DrinkRecyclerViewAdapter mDrinksAdapter;
     private DashboardViewModel mDashboardViewModel;
-    private RecyclerView mRecyclerView;
 
     /**
      * Static constructor
@@ -66,7 +63,7 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //Data binding
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false);
+        mBinding = FragmentDashboardBinding.inflate(inflater);
         mDashboardViewModel = new DashboardViewModel();
         mBinding.setDashboardViewModel(mDashboardViewModel);
 
@@ -76,7 +73,6 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
         mHeaderTextView.setTypeface(typeface);*/
 
         //Customize fan layout and setup recycler view
-        mRecyclerView = (RecyclerView) mBinding.getRoot().findViewById(R.id.recycler_view);
         FanLayoutManagerSettings fanLayoutManagerSettings = FanLayoutManagerSettings
                                                             .newBuilder(getContext())
                                                             .withFanRadius(true)
@@ -85,12 +81,12 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
                                                             .withViewHeightDp(getResources().getDimension(R.dimen.fanout_card_height))
                                                             .build();
         mFanLayoutManager = new FanLayoutManager(getContext(), fanLayoutManagerSettings);
-        mRecyclerView.setLayoutManager(mFanLayoutManager);
+        mBinding.recyclerView.setLayoutManager(mFanLayoutManager);
         mDrinksAdapter = new DrinkRecyclerViewAdapter(getActivity(), DrinkDao.getInstance().loadAllAsync());
         mDrinksAdapter.setDrinkSelectedListener(this);
 
-        mRecyclerView.setAdapter(mDrinksAdapter);
-        mRecyclerView.setHasFixedSize(true);
+        mBinding.recyclerView.setAdapter(mDrinksAdapter);
+        mBinding.recyclerView.setHasFixedSize(true);
 
         //Other ui
         mBinding.startButton.setOnClickListener(this);
@@ -108,10 +104,10 @@ public class DashboardFragment extends Fragment implements DrinkRecyclerViewAdap
     @Override
     public void OnDrinkClicked(int pos, final View view) {
         if (mFanLayoutManager.getSelectedItemPosition() != pos) {
-            mFanLayoutManager.switchItem(mRecyclerView, pos);
+            mFanLayoutManager.switchItem(mBinding.recyclerView, pos);
         } else {
             //Use fragment manager, instead of a new activity
-            ((DrinkControlNavigation)getActivity()).OnShowDrinkDetails(this, ((DrinkRecyclerViewAdapter)mRecyclerView.getAdapter()).getItem(mFanLayoutManager.getSelectedItemPosition()).getId(),
+            ((DrinkControlNavigation)getActivity()).OnShowDrinkDetails(this, ((DrinkRecyclerViewAdapter)mBinding.recyclerView.getAdapter()).getItem(mFanLayoutManager.getSelectedItemPosition()).getId(),
                     mBinding.topPanel);
         }
     }
